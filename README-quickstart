@@ -1,0 +1,77 @@
+
+
+    Jabber + VTK = Jaivis
+
+
+INTRO
+-----
+
+Jabber is a *really cool* open-source, decentralized IM system.
+
+VTK (Visualization Toolkit) is a *really cool* open-source, 3D 
+visualization system built on top of OpenGL.  
+
+I think that it would be *really cool* if VTK was connected to 
+Jabber.
+
+For my first, real-world application of this idea, I'm trying to 
+create a 3D, virtual-reality-type world, kind of like SecondLife, 
+except on a much, much smaller scale.  Jabber can already do pretty 
+much everything except the graphics.
+
+
+
+REQUIREMENTS
+------------
+
+You'll need to have the following software installed:
+  python
+  vtk
+  vtk-python
+  numpy
+  socat or netcat or similar
+(I like to use socat to interact with Unix domain sockets.)
+
+
+
+QUICKSTART
+----------
+You might need to change some pathnames:
+   edit:  jv/jvPaths.py
+
+
+To start the 3-D world, type:
+
+   python jaivis.py VirtualWorldForPeople
+
+To look around:
+
+   [Middle Mouse Click] + MouseMove
+     (ie, hold down the middle button on your mouse and move the mouse 
+          to look around)
+
+To move:
+
+   These keys form an arrow pad:
+
+           E
+          SDF
+
+          E - Forward
+          D - Back
+          S - Strafe left
+          F - Strafe right
+
+   There's also:
+          T - Float up
+          G - Float down
+          H - toggle headlights
+          W - toggle wireframe
+          O - "out-of-body" perspective
+
+
+
+Please see the file:  docs/intro.html
+for more information.
+
+

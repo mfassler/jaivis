@@ -1,0 +1,13 @@
+# vtk DataFile Version 2.0
+trailing cable for the MechAngel
+ASCII
+
+DATASET POLYDATA
+POINTS 3 float
+0.0 0.0 5.0
+0.0 0.0 6.0
+0.0 1.0 6.0
+
+LINES 2 6
+2 0 1
+2 1 2

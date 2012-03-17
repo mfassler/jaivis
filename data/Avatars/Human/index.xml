@@ -1,0 +1,231 @@
+
+
+<!--
+<skeleton>
+  <joint name="right shoulder">
+    <bone name="humerus" length="0.28">
+      <joint name="elbow">
+        <bone name="forearm" length="0.26">
+          <joint name="wrist">
+            <bone name="hand">
+              <joint name="thumb knuckle">
+              </joint>
+              <joint name="index knuckle">
+                <bone name="index base">
+                  <joint name="mid knuckle">
+                    <bone name="index finger">
+                    </bone>
+                  </joint>
+                </bone>
+              </joint>
+              <joint name="middle knuckle">
+                <bone name="middle base">
+                  <joint name="mid knuckle">
+                    <bone name="middle finger">
+                    </bone>
+                  </joint>
+                </bone>
+              </joint>
+              <joint name="ring knuckle">
+              </joint>
+              <joint name="pinky knuckle">
+              </joint>
+            </bone>
+          </joint>
+        </bone>
+      </joint>
+    </bone>
+  </joint>
+</skeleton>
+-->
+<VTKpipelines>
+  <Actor name="head" SetPosition="0.0, 0.0, 1.63">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <SphereSource SetRadius="0.1" SetPhiResolution="8" SetThetaResolution="8">
+        </SphereSource>
+        <Transform Scale="0.8, 1.0, 1.25">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor name="pelvis" SetPosition="0.0, 0.0, 0.96">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.3" SetRadius="0.07">
+        </CylinderSource>
+        <Transform RotateZ="90">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor name="sternum">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource boneLength="sternum" SetRadius="0.02">
+        </CylinderSource>
+        <Transform boneBuild='sternum'>
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+
+  <Actor name="left collarbone" SetColor="0.0, 0.9, 0.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource boneLength="left collarbone" SetRadius="0.015">
+        </CylinderSource>
+        <Transform boneBuild="left collarbone">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+
+  <Actor name="right collarbone" SetColor="0.9, 0.9, 0.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource boneLength="right collarbone" SetRadius="0.015">
+        </CylinderSource>
+        <Transform boneBuild="right collarbone">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+
+  <Actor name="left humerus" SetColor="0.9, 0.0, 0.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource boneLength="left humerus" SetRadius="0.045">
+        </CylinderSource>
+        <Transform boneBuild="left humerus">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+
+  <Actor name="right humerus" SetColor="0.0, 0.0, 1.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource boneLength="right humerus" SetRadius="0.045">
+        </CylinderSource>
+        <Transform boneBuild="right humerus">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+
+  <Actor name="left forearm" SetColor="1.0, 1.0, 0.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource boneLength="left forearm" SetRadius="0.035">
+        </CylinderSource>
+        <Transform boneBuild="left forearm">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+
+  <Actor name="right forearm" SetColor="1.0, 1.0, 0.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource boneLength="right forearm" SetRadius="0.035">
+        </CylinderSource>
+        <Transform boneBuild="right forearm">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+
+  <Actor name="left femur" SetColor="0.9, 0.0, 0.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource boneLength="left femur" SetRadius="0.08">
+        </CylinderSource>
+        <Transform boneBuild="left femur">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor name="right femur">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource boneLength="right femur" SetRadius="0.08">
+        </CylinderSource>
+        <Transform boneBuild="right femur">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+
+  <Actor name="left shin">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource boneLength="left shin" SetRadius="0.05">
+        </CylinderSource>
+        <Transform boneBuild="left shin">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+
+  <Actor name="right shin">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource boneLength="right shin" SetRadius="0.05">
+        </CylinderSource>
+        <Transform boneBuild="right shin">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+
+  <Actor name="left hand" SetColor="1.0, 1.0, 0.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CubeSource SetXLength="0.035" SetYLength="0.10" SetZLength="0.085">
+        </CubeSource>
+        <Transform Translate="0.0, 0.05, 0.0">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+
+  <Actor name="right hand" SetColor="1.0, 1.0, 0.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CubeSource SetXLength="0.035" SetYLength="0.10" SetZLength="0.085">
+        </CubeSource>
+        <Transform Translate="0.0, 0.05, 0.0">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+
+  <Actor name="left foot" SetColor="1.0, 0.0, 0.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CubeSource SetXLength="0.1" SetYLength="0.18" SetZLength="0.09">
+        </CubeSource>
+        <Transform Translate="0.0, 0.03, -0.045">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+
+  <Actor name="right foot" SetColor="0.0, 0.0, 1.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CubeSource SetXLength="0.1" SetYLength="0.18" SetZLength="0.09">
+        </CubeSource>
+        <Transform Translate="0.0, 0.03, -0.045">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+
+
+
+</VTKpipelines>
+
+
+

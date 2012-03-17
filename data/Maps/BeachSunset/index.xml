@@ -1,0 +1,62 @@
+<!--<jaivisMap bgcolor="#000000">-->
+<VTKpipelines bgcolor="#000000">
+
+<Texture name="theSun" SetRepeat="0" SetInterpolate="1">
+  <BMPReader SetFileName="textures/TheSun.bmp" SetRepeat="0"/>
+</Texture>
+
+<Texture name="ocean" SetInterpolate="1">
+  <BMPReader SetFileName="textures/ocean.bmp" SetRepeat="0"/>
+</Texture>
+
+<Texture name="sand" SetInterpolate="1">
+  <BMPReader SetFileName="textures/sand.bmp" SetRepeat="0"/>
+</Texture>
+
+<Actor name="sky" SetTexture="theSun" SetPosition="150.0, 0.0, 0.0" SetOrientation="-1.0, 0.0, 90.0">
+  <PolyDataMapper>
+    <TextureMapToSphere>
+        <SphereSource SetRadius="400.0" SetThetaResolution="8" SetPhiResolution="8" SetStartTheta="20.0" SetEndTheta="160.0"/>
+    </TextureMapToSphere>
+  </PolyDataMapper>
+</Actor>
+
+<Actor name="oceanTop" SetTexture="ocean">
+  <DataSetMapper>
+    <TextureMapToPlane SetOrigin="0.0, 0.0, 0.0" SetPoint1="32.0, 0.0, 0.0" SetPoint2="0.0, 32.0, 0.0">
+      <UnstructuredGridReader SetFileName="ocean.vtk"/>
+    </TextureMapToPlane>
+  </DataSetMapper>
+</Actor>
+
+<Actor name="coastline" SetTexture="sand">
+  <DataSetMapper>
+    <TextureMapToPlane SetOrigin="0.0, 0.0, 0.0" SetPoint1="32.0, 0.0, 0.0" SetPoint2="0.0, 32.0, 0.0">
+      <UnstructuredGridReader SetFileName="coastline.vtk"/>
+    </TextureMapToPlane>
+  </DataSetMapper>
+</Actor>
+
+
+
+<Light name="fromTheSun" color="#FF8060" SetPositional="0" SetIntensity="0.7"
+       SetPosition="-256, 0, 1" SetFocalPoint="0, 0, 0"/>
+
+<Light name="west" SetPositional="1" SetIntensity="1.0" 
+       SetPosition="-128, 0, 15" SetFocalPoint="-256, 0, 15" SetConeAngle="90"/>
+
+<Light name="west2" SetPositional="1" SetIntensity="1.0" 
+       SetPosition="-128, 10, 15" SetFocalPoint="-256, 10, 15" SetConeAngle="90"/>
+
+<Light name="general" SetPositional="0" SetIntensity="0.6" 
+       SetPosition="-1, 0, 3" SetFocalPoint="0, 0, 0"/>
+
+<Light name="general2" SetPositional="0" SetIntensity="0.3" 
+       SetPosition="0, 0, 0" SetFocalPoint="-1, 0, 0"/>
+
+<Light name="general3" SetPositional="0" SetIntensity="0.2" 
+       SetPosition="0, 0, 0" SetFocalPoint="0, 0, 1"/>
+
+</VTKpipelines>
+<!--</jaivisMap>-->
+

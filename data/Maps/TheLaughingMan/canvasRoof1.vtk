@@ -1,0 +1,20 @@
+# vtk DataFile Version 2.0
+
+ASCII
+
+DATASET UNSTRUCTURED_GRID
+POINTS 5 float
+
+8.0 3.0 6.0
+-1.0 2.8 6.0
+-4.2 -0.6 6.3
+-4.6 -3.0 6.5
+7.0 -3.5 7.5
+
+CELLS 1 6
+5 0 1 2 3 4
+
+CELL_TYPES 1
+7
+
+

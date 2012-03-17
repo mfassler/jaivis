@@ -1,0 +1,169 @@
+<VTKpipelines>
+
+<Assembly name="LED Display" SetPosition="9.0, -11.0, 2.8">
+  <Actor SetColor="1.0, 1.0, 1.0" SetPosition="0.0, 1.0, 0.0" SetOrientation="0.0, 0.0, 0.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CubeSource SetXLength="0.1" SetYLength="0.5" SetZLength="0.01"/>
+        <Transform Translate="0.0, 0.25, 0.0">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor SetColor="1.0, 1.0, 1.0" SetPosition="-1.0, 0.0, 0.0" SetOrientation="0.0, 0.0, 90.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CubeSource SetXLength="0.1" SetYLength="0.5" SetZLength="0.01"/>
+        <Transform Translate="0.0, 0.25, 0.0">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor SetColor="1.0, 1.0, 1.0" SetPosition="0.0, -1.0, 0.0" SetOrientation="0.0, 0.0, 180.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CubeSource SetXLength="0.1" SetYLength="0.5" SetZLength="0.01"/>
+        <Transform Translate="0.0, 0.25, 0.0">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor SetColor="1.0, 1.0, 1.0" SetPosition="1.0, 0.0, 0.0" SetOrientation="0.0, 0.0, 270.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CubeSource SetXLength="0.1" SetYLength="0.5" SetZLength="0.01"/>
+        <Transform Translate="0.0, 0.25, 0.0">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+</Assembly>
+
+<Assembly name="2second" SetPosition="9.0, -11.0, 3.3">
+  <Actor SetColor="0.4, 0.4, 1.0" SetPosition="0.0, 0.1, 0.0" SetOrientation="0.0, 0.0, 0.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.9" SetRadius="0.03"/>
+        <Transform Translate="0.0, 0.45, 0.0">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor SetColor="0.4, 0.4, 1.0" SetPosition="-0.1, 0.0, 0.0" SetOrientation="0.0, 0.0, 90.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.9" SetRadius="0.03"/>
+        <Transform Translate="0.0, 0.45, 0.0">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor SetColor="0.4, 0.4, 1.0" SetPosition="0.0, -0.1, 0.0" SetOrientation="0.0, 0.0, 180.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.9" SetRadius="0.03"/>
+        <Transform Translate="0.0, 0.45, 0.0">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor SetColor="0.4, 0.4, 1.0" SetPosition="0.1, 0.0, 0.0" SetOrientation="0.0, 0.0, 270.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.9" SetRadius="0.03"/>
+        <Transform Translate="0.0, 0.45, 0.0">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+</Assembly>
+
+<Assembly name="4second" SetPosition="9.0, -11.0, 3.5">
+  <Actor SetColor="1.0, 0.3, 0.4" SetPosition="0.0, 0.1, 0.0" SetOrientation="0.0, 0.0, 0.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.9" SetRadius="0.05"/>
+        <Transform Translate="0.0, 0.45, 0.0">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor SetColor="1.0, 0.3, 0.4" SetPosition="-0.1, 0.0, 0.0" SetOrientation="0.0, 0.0, 90.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.9" SetRadius="0.05"/>
+        <Transform Translate="0.0, 0.45, 0.0">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor SetColor="1.0, 0.3, 0.4" SetPosition="0.0, -0.1, 0.0" SetOrientation="0.0, 0.0, 180.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.9" SetRadius="0.05"/>
+        <Transform Translate="0.0, 0.45, 0.0">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor SetColor="1.0, 0.3, 0.4" SetPosition="0.1, 0.0, 0.0" SetOrientation="0.0, 0.0, 270.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.9" SetRadius="0.05"/>
+        <Transform Translate="0.0, 0.45, 0.0">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+</Assembly>
+
+<Assembly name="8second" SetPosition="9.0, -11.0, 3.7">
+  <Actor SetColor="0.3, 0.3, 0.3" SetPosition="0.0, 0.1, 0.0" SetOrientation="0.0, 0.0, 0.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.9" SetRadius="0.08"/>
+        <Transform Translate="0.0, 0.45, 0.0">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor SetColor="0.3, 0.3, 0.3" SetPosition="-0.1, 0.0, 0.0" SetOrientation="0.0, 0.0, 90.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.9" SetRadius="0.08"/>
+        <Transform Translate="0.0, 0.45, 0.0">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor SetColor="0.3, 0.3, 0.3" SetPosition="0.0, -0.1, 0.0" SetOrientation="0.0, 0.0, 180.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.9" SetRadius="0.08"/>
+        <Transform Translate="0.0, 0.45, 0.0">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor SetColor="0.3, 0.3, 0.3" SetPosition="0.1, 0.0, 0.0" SetOrientation="0.0, 0.0, 270.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.9" SetRadius="0.08"/>
+        <Transform Translate="0.0, 0.45, 0.0">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+</Assembly>
+
+<Actor name="axle" SetColor="1.0, 0.3, 0.4" SetPosition="9.0, -11.0, 2.5" SetOrientation="90.0, 0.0, 0.0">
+  <PolyDataMapper>
+    <TransformPolyDataFilter>
+      <CylinderSource SetHeight="1.4" SetRadius="0.09"/>
+      <Transform Translate="0.0, 0.7, 0.0">
+      </Transform>
+    </TransformPolyDataFilter>
+  </PolyDataMapper>
+</Actor>
+</VTKpipelines>
+

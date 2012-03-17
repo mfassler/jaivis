@@ -1,0 +1,34 @@
+<VTKpipelines>
+
+<Actor name="origin" SetColor="1, 0.3, 0.4" SetPosition="0.0, 0.0, 2.0">
+  <PolyDataMapper>
+    <SphereSource SetRadius="0.1"/>
+  </PolyDataMapper>
+</Actor>
+
+
+<!-- This is based on the PerlinTerrain example from the VTK examples. -->
+
+<Actor name="terrain" SetColor="0.4, 0.2, 0.1" SetPosition="1.0, -1.0, 3.0">
+  <PolyDataMapper>
+    <PolyDataNormals SetFeatureAngle="90">
+      <ContourFilter SetValue="0, 0.0">
+        <SampleFunction SetSampleDimensions="65, 65, 20" SetModelBounds="-1, 1, -1, 1, -0.5, 0.9">
+          <ImplicitSum>
+            <Plane weight="1">
+            </Plane>
+            <PerlinNoise weight="0.2" SetFrequency="1, 1, 0">
+            </PerlinNoise>
+            <PerlinNoise weight="0.1" SetFrequency="3, 5, 0" SetPhase="0.5, 0.5, 0">
+            </PerlinNoise>
+            <PerlinNoise weight="0.02" SetFrequency="16, 16, 0">
+            </PerlinNoise>
+          </ImplicitSum>
+        </SampleFunction>
+      </ContourFilter>
+    </PolyDataNormals>
+  </PolyDataMapper>
+</Actor>
+
+</VTKpipelines>
+

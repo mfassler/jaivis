@@ -1,0 +1,283 @@
+<VTKpipelines>
+<!-- Mech Angel -->
+
+  <Actor name="head" SetPosition="0.0, 0.0, 2.0">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.5" SetRadius="0.08" SetResolution="6">
+        </CylinderSource>
+        <Transform RotateX="90">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor name="neck" SetPosition="0.0, 0.0, 1.625" SetColor="0.4, 0.4, 0.4">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.25" SetRadius="0.025">
+        </CylinderSource>
+        <Transform RotateX="90">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor name="torso" SetPosition="0.0, 0.0, 1.155">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.7" SetRadius="0.12">
+        </CylinderSource>
+        <Transform RotateX="90">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor name="shoulderbar" SetPosition="0.0, 0.0, 1.6" SetColor="0.4, 0.4, 0.4">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.8" SetRadius="0.025">
+        </CylinderSource>
+        <Transform RotateZ="90">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor name="left shoulder" SetPosition="-0.2, 0.0, 1.6">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.3" SetRadius="0.09" SetResolution="9">
+        </CylinderSource>
+        <Transform RotateZ="90">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor name="right shoulder" SetPosition="0.2, 0.0, 1.6" SetColor="0.9, 0.9, 0.9">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.3" SetRadius="0.05" SetResolution="8">
+        </CylinderSource>
+        <Transform RotateZ="90">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor name="right shoulder ring" SetPosition="0.23, 0.0, 1.59" SetColor="0.45, 0.45, 0.65">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.12" SetRadius="0.12" SetResolution="9">
+        </CylinderSource>
+        <Transform RotateZ="90" RotateX="-15">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor name="left humerus" SetPosition="-0.4, 0.0, 1.325">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.55" SetRadius="0.025">
+        </CylinderSource>
+        <Transform RotateX="90">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor name="right humerus" SetPosition="0.4, 0.0, 1.325">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.55" SetRadius="0.025">
+        </CylinderSource>
+        <Transform RotateX="90">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor name="left forearm" SetPosition="-0.4, 0.22, 0.85">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.6" SetRadius="0.025">
+        </CylinderSource>
+        <Transform RotateX="-40">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor name="right forearm" SetPosition="0.4, 0.22, 0.85">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.6" SetRadius="0.025">
+        </CylinderSource>
+        <Transform RotateX="-40">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor name="cablesAA" SetPosition="0.0, 0.0, 0.65">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.3" SetRadius="0.015">
+        </CylinderSource>
+        <Transform RotateX="90">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor name="cablesAB" SetPosition="0.0, -0.03, 0.43">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.15" SetRadius="0.015">
+        </CylinderSource>
+        <Transform RotateX="67.5">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor name="cablesAC" SetPosition="0.0, -0.115, 0.305">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.15" SetRadius="0.015">
+        </CylinderSource>
+        <Transform RotateX="45">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor name="cablesBA" SetPosition="-0.06, -0.09, 0.65">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.3" SetRadius="0.015">
+        </CylinderSource>
+        <Transform RotateX="90">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor name="cablesBB" SetPosition="-0.06, -0.12, 0.43">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.15" SetRadius="0.015">
+        </CylinderSource>
+        <Transform RotateX="67.5">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor name="cablesBC" SetPosition="-0.06, -0.205, 0.305">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.15" SetRadius="0.015">
+        </CylinderSource>
+        <Transform RotateX="45">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor name="cablesCA" SetPosition="0.08, -0.03, 0.6">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.4" SetRadius="0.03">
+        </CylinderSource>
+        <Transform RotateX="90">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+<!--  <Actor name="RightWing" SetPosition="0.5, -0.2, 1.8">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CubeSource SetXLength="0.6" SetYLength="0.4" SetZLength="0.01"/>
+        <Transform RotateX="90">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>-->
+
+<!--
+  <Actor name="LeftWing" SetPosition="-0.5, -0.2, 1.8">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CubeSource SetXLength="0.6" SetYLength="0.4" SetZLength="0.01"/>
+        <Transform RotateX="90">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+-->
+
+  <!--<Actor name="extraRightWing" SetPosition="0.1, -0.2, 1.8" SetOrientation="60.0, 80.0, -80.0" SetScale="0.2, 0.2, 0.2">-->
+  <Actor name="extraRightWing" SetPosition="0.2, -0.2, 1.8">
+    <DataSetMapper>
+      <TransformFilter>
+
+      <UnstructuredGridReader SetFileName="AngelWings.vtk"/>
+
+        <Transform RotateX="60." RotateY="70.0" RotateZ="-120.0" Scale="0.2, 0.2, 0.2">
+        </Transform>
+      </TransformFilter>
+
+    </DataSetMapper>
+  </Actor>
+
+  <Actor name="extraLeftWing" SetPosition="-0.2, -0.2, 1.8">
+    <DataSetMapper>
+      <TransformFilter>
+
+      <UnstructuredGridReader SetFileName="AngelWings.vtk"/>
+
+        <Transform RotateX="60." RotateY="-70.0" RotateZ="120.0" Scale="-0.2, 0.2, 0.2">
+        </Transform>
+      </TransformFilter>
+
+    </DataSetMapper>
+  </Actor>
+
+<!--
+  <Actor name="WingReference">
+    <DataSetMapper>
+      <TransformFilter>
+
+      <UnstructuredGridReader SetFileName="AngelWings.vtk"/>
+
+        <Transform Scale="0.4, 0.4, 0.4">
+        </Transform>
+      </TransformFilter>
+
+    </DataSetMapper>
+  </Actor>
+-->
+  <Actor name="halo" SetPosition="0.0, -0.18, 2.0" SetColor="1.0, 1.0, 0.5">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <!--<CylinderSource SetHeight="0.02" SetRadius="0.3" SetResolution="16" SetCapping="1">
+        </CylinderSource>-->
+        <DiskSource SetInnerRadius="0.35" SetOuterRadius="0.4" SetCircumferentialResolution="18">
+        </DiskSource>
+        <Transform RotateX="90">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor name="right eye" SetPosition="0.050, 0.06, 2.08" SetColor="1.0, 1.0, 0.5">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.03" SetRadius="0.045" SetResolution="18">
+        </CylinderSource>
+        <Transform RotateX="0">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+  <Actor name="left eye" SetPosition="-0.050, 0.06, 2.0" SetColor="1.0, 1.0, 0.5">
+    <PolyDataMapper>
+      <TransformPolyDataFilter>
+        <CylinderSource SetHeight="0.03" SetRadius="0.02" SetResolution="18">
+        </CylinderSource>
+        <Transform RotateX="0">
+        </Transform>
+      </TransformPolyDataFilter>
+    </PolyDataMapper>
+  </Actor>
+</VTKpipelines>
+
+
+
+

@@ -1,0 +1,629 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+
+  
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>20.13. xml.etree.ElementTree — The ElementTree XML API — Python v2.6.2 documentation</title>
+    <link rel="stylesheet" href="xml.etree.elementtree_files/default.css" type="text/css">
+    <link rel="stylesheet" href="xml.etree.elementtree_files/pygments.css" type="text/css">
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.6.2',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="xml.etree.elementtree_files/jquery.js"></script>
+    <script type="text/javascript" src="xml.etree.elementtree_files/doctools.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml" title="Search within Python v2.6.2 documentation" href="http://docs.python.org/_static/opensearch.xml">
+    <link rel="author" title="About these documents" href="http://docs.python.org/about.html">
+    <link rel="copyright" title="Copyright" href="http://docs.python.org/copyright.html">
+    <link rel="top" title="Python v2.6.2 documentation" href="http://docs.python.org/index.html">
+    <link rel="up" title="20. Structured Markup Processing Tools" href="http://docs.python.org/library/markup.html">
+    <link rel="next" title="21. Internet Protocols and Support" href="http://docs.python.org/library/internet.html">
+    <link rel="prev" title="20.12. xml.sax.xmlreader — Interface for XML parsers" href="http://docs.python.org/library/xml.sax.reader.html">
+    <link rel="shortcut icon" type="image/png" href="xml.etree.elementtree_files/py.png">
+ 
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px;">
+          <a href="http://docs.python.org/genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="http://docs.python.org/modindex.html" title="Global Module Index" accesskey="M">modules</a> |</li>
+        <li class="right">
+          <a href="http://docs.python.org/library/internet.html" title="21. Internet Protocols and Support" accesskey="N">next</a> |</li>
+        <li class="right">
+          <a href="http://docs.python.org/library/xml.sax.reader.html" title="20.12. xml.sax.xmlreader — Interface for XML parsers" accesskey="P">previous</a> |</li>
+        <li><img src="xml.etree.elementtree_files/py.png" alt="" style="vertical-align: middle; margin-top: -1px;"></li>
+        <li><a href="http://docs.python.org/index.html">Python v2.6.2 documentation</a> »</li>
+
+          <li><a href="http://docs.python.org/library/index.html">The Python Standard Library</a> »</li>
+          <li><a href="http://docs.python.org/library/markup.html" accesskey="U">20. Structured Markup Processing Tools</a> »</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-xml.etree.ElementTree">
+<h1>20.13. <tt class="xref docutils literal"><span class="pre">xml.etree.ElementTree</span></tt> — The ElementTree XML API<a class="headerlink" href="#module-xml.etree.ElementTree" title="Permalink to this headline">¶</a></h1>
+<p>
+<span class="versionmodified">New in version 2.5.</span></p>
+<p>The Element type is a flexible container object, designed to store hierarchical
+data structures in memory. The type can be described as a cross between a list
+and a dictionary.</p>
+<p>Each element has a number of properties associated with it:</p>
+<ul class="simple">
+<li>a tag which is a string identifying what kind of data this element represents
+(the element type, in other words).</li>
+<li>a number of attributes, stored in a Python dictionary.</li>
+<li>a text string.</li>
+<li>an optional tail string.</li>
+<li>a number of child elements, stored in a Python sequence</li>
+</ul>
+<p>To create an element instance, use the Element or SubElement factory functions.</p>
+<p>The <a title="xml.etree.ElementTree.ElementTree" class="reference internal" href="#xml.etree.ElementTree.ElementTree"><tt class="xref docutils literal"><span class="pre">ElementTree</span></tt></a> class can be used to wrap an element structure, and
+convert it from and to XML.</p>
+<p>A C implementation of this API is available as <tt class="xref docutils literal"><span class="pre">xml.etree.cElementTree</span></tt>.</p>
+<p>See <a class="reference external" href="http://effbot.org/zone/element-index.htm">http://effbot.org/zone/element-index.htm</a> for tutorials and links to other
+docs. Fredrik Lundh’s page is also the location of the development version of the
+xml.etree.ElementTree.</p>
+<div class="section" id="functions">
+<span id="elementtree-functions"></span><h2>20.13.1. Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="xml.etree.ElementTree.Comment">
+<tt class="descclassname">xml.etree.ElementTree.</tt><tt class="descname">Comment</tt><big>(</big><span class="optional">[</span><em>text</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.Comment" title="Permalink to this definition">¶</a></dt>
+<dd>Comment element factory.  This factory function creates a special element that
+will be serialized as an XML comment. The comment string can be either an 8-bit
+ASCII string or a Unicode string. <em>text</em> is a string containing the comment
+string. Returns an element instance representing a comment.</dd></dl>
+
+<dl class="function">
+<dt id="xml.etree.ElementTree.dump">
+<tt class="descclassname">xml.etree.ElementTree.</tt><tt class="descname">dump</tt><big>(</big><em>elem</em><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.dump" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes an element tree or element structure to sys.stdout.  This function should
+be used for debugging only.</p>
+<p>The exact output format is implementation dependent.  In this version, it’s
+written as an ordinary XML file.</p>
+<p><em>elem</em> is an element tree or an individual element.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xml.etree.ElementTree.Element">
+<tt class="descclassname">xml.etree.ElementTree.</tt><tt class="descname">Element</tt><big>(</big><em>tag</em><span class="optional">[</span>, <em>attrib</em><span class="optional">]</span><span class="optional">[</span>, <em>**extra</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.Element" title="Permalink to this definition">¶</a></dt>
+<dd><p>Element factory.  This function returns an object implementing the standard
+Element interface.  The exact class or type of that object is implementation
+dependent, but it will always be compatible with the _ElementInterface class in
+this module.</p>
+<p>The element name, attribute names, and attribute values can be either 8-bit
+ASCII strings or Unicode strings. <em>tag</em> is the element name. <em>attrib</em> is an
+optional dictionary, containing element attributes. <em>extra</em> contains additional
+attributes, given as keyword arguments. Returns an element instance.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xml.etree.ElementTree.fromstring">
+<tt class="descclassname">xml.etree.ElementTree.</tt><tt class="descname">fromstring</tt><big>(</big><em>text</em><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.fromstring" title="Permalink to this definition">¶</a></dt>
+<dd>Parses an XML section from a string constant.  Same as XML. <em>text</em> is a string
+containing XML data. Returns an Element instance.</dd></dl>
+
+<dl class="function">
+<dt id="xml.etree.ElementTree.iselement">
+<tt class="descclassname">xml.etree.ElementTree.</tt><tt class="descname">iselement</tt><big>(</big><em>element</em><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.iselement" title="Permalink to this definition">¶</a></dt>
+<dd>Checks if an object appears to be a valid element object. <em>element</em> is an
+element instance. Returns a true value if this is an element object.</dd></dl>
+
+<dl class="function">
+<dt id="xml.etree.ElementTree.iterparse">
+<tt class="descclassname">xml.etree.ElementTree.</tt><tt class="descname">iterparse</tt><big>(</big><em>source</em><span class="optional">[</span>, <em>events</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.iterparse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses an XML section into an element tree incrementally, and reports what’s
+going on to the user. <em>source</em> is a filename or file object containing XML data.
+<em>events</em> is a list of events to report back.  If omitted, only “end” events are
+reported. Returns an <a class="reference external" href="http://docs.python.org/glossary.html#term-iterator"><em class="xref">iterator</em></a> providing <tt class="docutils literal"><span class="pre">(event,</span> <span class="pre">elem)</span></tt> pairs.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p><a title="xml.etree.ElementTree.iterparse" class="reference internal" href="#xml.etree.ElementTree.iterparse"><tt class="xref docutils literal"><span class="pre">iterparse()</span></tt></a> only guarantees that it has seen the “&gt;”
+character of a starting tag when it emits a “start” event, so the
+attributes are defined, but the contents of the text and tail attributes
+are undefined at that point.  The same applies to the element children;
+they may or may not be present.</p>
+<p class="last">If you need a fully populated element, look for “end” events instead.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="xml.etree.ElementTree.parse">
+<tt class="descclassname">xml.etree.ElementTree.</tt><tt class="descname">parse</tt><big>(</big><em>source</em><span class="optional">[</span>, <em>parser</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.parse" title="Permalink to this definition">¶</a></dt>
+<dd>Parses an XML section into an element tree. <em>source</em> is a filename or file
+object containing XML data. <em>parser</em> is an optional parser instance.  If not
+given, the standard XMLTreeBuilder parser is used. Returns an ElementTree
+instance.</dd></dl>
+
+<dl class="function">
+<dt id="xml.etree.ElementTree.ProcessingInstruction">
+<tt class="descclassname">xml.etree.ElementTree.</tt><tt class="descname">ProcessingInstruction</tt><big>(</big><em>target</em><span class="optional">[</span>, <em>text</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.ProcessingInstruction" title="Permalink to this definition">¶</a></dt>
+<dd>PI element factory.  This factory function creates a special element that will
+be serialized as an XML processing instruction. <em>target</em> is a string containing
+the PI target. <em>text</em> is a string containing the PI contents, if given. Returns
+an element instance, representing a processing instruction.</dd></dl>
+
+<dl class="function">
+<dt id="xml.etree.ElementTree.SubElement">
+<tt class="descclassname">xml.etree.ElementTree.</tt><tt class="descname">SubElement</tt><big>(</big><em>parent</em>, <em>tag</em><span class="optional">[</span>, <em>attrib</em><span class="optional">[</span>, <em>**extra</em><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.SubElement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subelement factory.  This function creates an element instance, and appends it
+to an existing element.</p>
+<p>The element name, attribute names, and attribute values can be either 8-bit
+ASCII strings or Unicode strings. <em>parent</em> is the parent element. <em>tag</em> is the
+subelement name. <em>attrib</em> is an optional dictionary, containing element
+attributes. <em>extra</em> contains additional attributes, given as keyword arguments.
+Returns an element instance.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xml.etree.ElementTree.tostring">
+<tt class="descclassname">xml.etree.ElementTree.</tt><tt class="descname">tostring</tt><big>(</big><em>element</em><span class="optional">[</span>, <em>encoding</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.tostring" title="Permalink to this definition">¶</a></dt>
+<dd>Generates a string representation of an XML element, including all subelements.
+<em>element</em> is an Element instance. <em>encoding</em> is the output encoding (default is
+US-ASCII). Returns an encoded string containing the XML data.</dd></dl>
+
+<dl class="function">
+<dt id="xml.etree.ElementTree.XML">
+<tt class="descclassname">xml.etree.ElementTree.</tt><tt class="descname">XML</tt><big>(</big><em>text</em><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.XML" title="Permalink to this definition">¶</a></dt>
+<dd>Parses an XML section from a string constant.  This function can be used to
+embed “XML literals” in Python code. <em>text</em> is a string containing XML data.
+Returns an Element instance.</dd></dl>
+
+<dl class="function">
+<dt id="xml.etree.ElementTree.XMLID">
+<tt class="descclassname">xml.etree.ElementTree.</tt><tt class="descname">XMLID</tt><big>(</big><em>text</em><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.XMLID" title="Permalink to this definition">¶</a></dt>
+<dd>Parses an XML section from a string constant, and also returns a dictionary
+which maps from element id:s to elements. <em>text</em> is a string containing XML
+data. Returns a tuple containing an Element instance and a dictionary.</dd></dl>
+
+</div>
+<div class="section" id="the-element-interface">
+<span id="elementtree-element-interface"></span><h2>20.13.2. The Element Interface<a class="headerlink" href="#the-element-interface" title="Permalink to this headline">¶</a></h2>
+<p>Element objects returned by Element or SubElement have the  following methods
+and attributes.</p>
+<dl class="attribute">
+<dt id="xml.etree.ElementTree.Element.tag">
+<tt class="descclassname">Element.</tt><tt class="descname">tag</tt><a class="headerlink" href="#xml.etree.ElementTree.Element.tag" title="Permalink to this definition">¶</a></dt>
+<dd>A string identifying what kind of data this element represents (the element
+type, in other words).</dd></dl>
+
+<dl class="attribute">
+<dt id="xml.etree.ElementTree.Element.text">
+<tt class="descclassname">Element.</tt><tt class="descname">text</tt><a class="headerlink" href="#xml.etree.ElementTree.Element.text" title="Permalink to this definition">¶</a></dt>
+<dd>The <em>text</em> attribute can be used to hold additional data associated with the
+element. As the name implies this attribute is usually a string but may be any
+application-specific object. If the element is created from an XML file the
+attribute will contain any text found between the element tags.</dd></dl>
+
+<dl class="attribute">
+<dt id="xml.etree.ElementTree.Element.tail">
+<tt class="descclassname">Element.</tt><tt class="descname">tail</tt><a class="headerlink" href="#xml.etree.ElementTree.Element.tail" title="Permalink to this definition">¶</a></dt>
+<dd>The <em>tail</em> attribute can be used to hold additional data associated with the
+element. This attribute is usually a string but may be any application-specific
+object. If the element is created from an XML file the attribute will contain
+any text found after the element’s end tag and before the next tag.</dd></dl>
+
+<dl class="attribute">
+<dt id="xml.etree.ElementTree.Element.attrib">
+<tt class="descclassname">Element.</tt><tt class="descname">attrib</tt><a class="headerlink" href="#xml.etree.ElementTree.Element.attrib" title="Permalink to this definition">¶</a></dt>
+<dd>A dictionary containing the element’s attributes. Note that while the <em>attrib</em>
+value is always a real mutable Python dictionary, an ElementTree implementation
+may choose to use another internal representation, and create the dictionary
+only if someone asks for it. To take advantage of such implementations, use the
+dictionary methods below whenever possible.</dd></dl>
+
+<p>The following dictionary-like methods work on the element attributes.</p>
+<dl class="method">
+<dt id="xml.etree.ElementTree.Element.clear">
+<tt class="descclassname">Element.</tt><tt class="descname">clear</tt><big>(</big><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.Element.clear" title="Permalink to this definition">¶</a></dt>
+<dd>Resets an element.  This function removes all subelements, clears all
+attributes, and sets the text and tail attributes to None.</dd></dl>
+
+<dl class="method">
+<dt id="xml.etree.ElementTree.Element.get">
+<tt class="descclassname">Element.</tt><tt class="descname">get</tt><big>(</big><em>key</em><span class="optional">[</span>, <em>default=None</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.Element.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the element attribute named <em>key</em>.</p>
+<p>Returns the attribute value, or <em>default</em> if the attribute was not found.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xml.etree.ElementTree.Element.items">
+<tt class="descclassname">Element.</tt><tt class="descname">items</tt><big>(</big><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.Element.items" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the element attributes as a sequence of (name, value) pairs. The
+attributes are returned in an arbitrary order.</dd></dl>
+
+<dl class="method">
+<dt id="xml.etree.ElementTree.Element.keys">
+<tt class="descclassname">Element.</tt><tt class="descname">keys</tt><big>(</big><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.Element.keys" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the elements attribute names as a list. The names are returned in an
+arbitrary order.</dd></dl>
+
+<dl class="method">
+<dt id="xml.etree.ElementTree.Element.set">
+<tt class="descclassname">Element.</tt><tt class="descname">set</tt><big>(</big><em>key</em>, <em>value</em><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.Element.set" title="Permalink to this definition">¶</a></dt>
+<dd>Set the attribute <em>key</em> on the element to <em>value</em>.</dd></dl>
+
+<p>The following methods work on the element’s children (subelements).</p>
+<dl class="method">
+<dt id="xml.etree.ElementTree.Element.append">
+<tt class="descclassname">Element.</tt><tt class="descname">append</tt><big>(</big><em>subelement</em><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.Element.append" title="Permalink to this definition">¶</a></dt>
+<dd>Adds the element <em>subelement</em> to the end of this elements internal list of
+subelements.</dd></dl>
+
+<dl class="method">
+<dt id="xml.etree.ElementTree.Element.find">
+<tt class="descclassname">Element.</tt><tt class="descname">find</tt><big>(</big><em>match</em><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.Element.find" title="Permalink to this definition">¶</a></dt>
+<dd>Finds the first subelement matching <em>match</em>.  <em>match</em> may be a tag name or path.
+Returns an element instance or <tt class="xref docutils literal"><span class="pre">None</span></tt>.</dd></dl>
+
+<dl class="method">
+<dt id="xml.etree.ElementTree.Element.findall">
+<tt class="descclassname">Element.</tt><tt class="descname">findall</tt><big>(</big><em>match</em><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.Element.findall" title="Permalink to this definition">¶</a></dt>
+<dd>Finds all subelements matching <em>match</em>.  <em>match</em> may be a tag name or path.
+Returns an iterable yielding all matching elements in document order.</dd></dl>
+
+<dl class="method">
+<dt id="xml.etree.ElementTree.Element.findtext">
+<tt class="descclassname">Element.</tt><tt class="descname">findtext</tt><big>(</big><em>condition</em><span class="optional">[</span>, <em>default=None</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.Element.findtext" title="Permalink to this definition">¶</a></dt>
+<dd>Finds text for the first subelement matching <em>condition</em>.  <em>condition</em> may be a
+tag name or path. Returns the text content of the first matching element, or
+<em>default</em> if no element was found.  Note that if the matching element has no
+text content an empty string is returned.</dd></dl>
+
+<dl class="method">
+<dt id="xml.etree.ElementTree.Element.getchildren">
+<tt class="descclassname">Element.</tt><tt class="descname">getchildren</tt><big>(</big><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.Element.getchildren" title="Permalink to this definition">¶</a></dt>
+<dd>Returns all subelements.  The elements are returned in document order.</dd></dl>
+
+<dl class="method">
+<dt id="xml.etree.ElementTree.Element.getiterator">
+<tt class="descclassname">Element.</tt><tt class="descname">getiterator</tt><big>(</big><span class="optional">[</span><em>tag=None</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.Element.getiterator" title="Permalink to this definition">¶</a></dt>
+<dd>Creates a tree iterator with the current element as the root.   The iterator
+iterates over this element and all elements below it  that match the given tag.
+If tag is <tt class="xref docutils literal"><span class="pre">None</span></tt> or <tt class="docutils literal"><span class="pre">'*'</span></tt> then all elements are iterated over. Returns an
+iterable that provides element objects in document (depth first) order.</dd></dl>
+
+<dl class="method">
+<dt id="xml.etree.ElementTree.Element.insert">
+<tt class="descclassname">Element.</tt><tt class="descname">insert</tt><big>(</big><em>index</em>, <em>element</em><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.Element.insert" title="Permalink to this definition">¶</a></dt>
+<dd>Inserts a subelement at the given position in this element.</dd></dl>
+
+<dl class="method">
+<dt id="xml.etree.ElementTree.Element.makeelement">
+<tt class="descclassname">Element.</tt><tt class="descname">makeelement</tt><big>(</big><em>tag</em>, <em>attrib</em><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.Element.makeelement" title="Permalink to this definition">¶</a></dt>
+<dd>Creates a new element object of the same type as this element. Do not call this
+method, use the SubElement factory function instead.</dd></dl>
+
+<dl class="method">
+<dt id="xml.etree.ElementTree.Element.remove">
+<tt class="descclassname">Element.</tt><tt class="descname">remove</tt><big>(</big><em>subelement</em><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.Element.remove" title="Permalink to this definition">¶</a></dt>
+<dd>Removes <em>subelement</em> from the element.   Unlike the findXYZ methods this method
+compares elements based on  the instance identity, not on tag value or contents.</dd></dl>
+
+<p>Element objects also support the following sequence type methods for working
+with subelements: <a title="object.__delitem__" class="reference external" href="http://docs.python.org/reference/datamodel.html#object.__delitem__"><tt class="xref docutils literal"><span class="pre">__delitem__()</span></tt></a>, <a title="object.__getitem__" class="reference external" href="http://docs.python.org/reference/datamodel.html#object.__getitem__"><tt class="xref docutils literal"><span class="pre">__getitem__()</span></tt></a>, <a title="object.__setitem__" class="reference external" href="http://docs.python.org/reference/datamodel.html#object.__setitem__"><tt class="xref docutils literal"><span class="pre">__setitem__()</span></tt></a>,
+<a title="object.__len__" class="reference external" href="http://docs.python.org/reference/datamodel.html#object.__len__"><tt class="xref docutils literal"><span class="pre">__len__()</span></tt></a>.</p>
+<p>Caution: Because Element objects do not define a <a title="object.__nonzero__" class="reference external" href="http://docs.python.org/reference/datamodel.html#object.__nonzero__"><tt class="xref docutils literal"><span class="pre">__nonzero__()</span></tt></a> method,
+elements with no subelements will test as <tt class="xref docutils literal"><span class="pre">False</span></tt>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">element</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">'foo'</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">element</span><span class="p">:</span> <span class="c"># careful!</span>
+    <span class="k">print</span> <span class="s">"element not found, or element has no subelements"</span>
+
+<span class="k">if</span> <span class="n">element</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">"element not found"</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="elementtree-objects">
+<span id="elementtree-elementtree-objects"></span><h2>20.13.3. ElementTree Objects<a class="headerlink" href="#elementtree-objects" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="xml.etree.ElementTree.ElementTree">
+<em class="property">
+class </em><tt class="descclassname">xml.etree.ElementTree.</tt><tt class="descname">ElementTree</tt><big>(</big><span class="optional">[</span><em>element</em><span class="optional">]</span><span class="optional">[</span>, <em>file</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.ElementTree" title="Permalink to this definition">¶</a></dt>
+<dd><p>ElementTree wrapper class.  This class represents an entire element hierarchy,
+and adds some extra support for serialization to and from standard XML.</p>
+<p><em>element</em> is the root element. The tree is initialized with the contents of the
+XML <em>file</em> if given.</p>
+<dl class="method">
+<dt id="xml.etree.ElementTree.ElementTree._setroot">
+<tt class="descname">_setroot</tt><big>(</big><em>element</em><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.ElementTree._setroot" title="Permalink to this definition">¶</a></dt>
+<dd>Replaces the root element for this tree.  This discards the current
+contents of the tree, and replaces it with the given element.  Use with
+care. <em>element</em> is an element instance.</dd></dl>
+
+<dl class="method">
+<dt id="xml.etree.ElementTree.ElementTree.find">
+<tt class="descname">find</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.ElementTree.find" title="Permalink to this definition">¶</a></dt>
+<dd>Finds the first toplevel element with given tag. Same as
+getroot().find(path).  <em>path</em> is the element to look for. Returns the
+first matching element, or <tt class="xref docutils literal"><span class="pre">None</span></tt> if no element was found.</dd></dl>
+
+<dl class="method">
+<dt id="xml.etree.ElementTree.ElementTree.findall">
+<tt class="descname">findall</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.ElementTree.findall" title="Permalink to this definition">¶</a></dt>
+<dd>Finds all toplevel elements with the given tag. Same as
+getroot().findall(path).  <em>path</em> is the element to look for. Returns a
+list or <a class="reference external" href="http://docs.python.org/glossary.html#term-iterator"><em class="xref">iterator</em></a> containing all matching elements, in document
+order.</dd></dl>
+
+<dl class="method">
+<dt id="xml.etree.ElementTree.ElementTree.findtext">
+<tt class="descname">findtext</tt><big>(</big><em>path</em><span class="optional">[</span>, <em>default</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.ElementTree.findtext" title="Permalink to this definition">¶</a></dt>
+<dd>Finds the element text for the first toplevel element with given tag.
+Same as getroot().findtext(path). <em>path</em> is the toplevel element to look
+for. <em>default</em> is the value to return if the element was not
+found. Returns the text content of the first matching element, or the
+default value no element was found.  Note that if the element has is
+found, but has no text content, this method returns an empty string.</dd></dl>
+
+<dl class="method">
+<dt id="xml.etree.ElementTree.ElementTree.getiterator">
+<tt class="descname">getiterator</tt><big>(</big><span class="optional">[</span><em>tag</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.ElementTree.getiterator" title="Permalink to this definition">¶</a></dt>
+<dd>Creates and returns a tree iterator for the root element.  The iterator
+loops over all elements in this tree, in section order. <em>tag</em> is the tag
+to look for (default is to return all elements)</dd></dl>
+
+<dl class="method">
+<dt id="xml.etree.ElementTree.ElementTree.getroot">
+<tt class="descname">getroot</tt><big>(</big><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.ElementTree.getroot" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the root element for this tree.</dd></dl>
+
+<dl class="method">
+<dt id="xml.etree.ElementTree.ElementTree.parse">
+<tt class="descname">parse</tt><big>(</big><em>source</em><span class="optional">[</span>, <em>parser</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.ElementTree.parse" title="Permalink to this definition">¶</a></dt>
+<dd>Loads an external XML section into this element tree. <em>source</em> is a file
+name or file object. <em>parser</em> is an optional parser instance.  If not
+given, the standard XMLTreeBuilder parser is used. Returns the section
+root element.</dd></dl>
+
+<dl class="method">
+<dt id="xml.etree.ElementTree.ElementTree.write">
+<tt class="descname">write</tt><big>(</big><em>file</em><span class="optional">[</span>, <em>encoding</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.ElementTree.write" title="Permalink to this definition">¶</a></dt>
+<dd>Writes the element tree to a file, as XML. <em>file</em> is a file name, or a
+file object opened for writing. <em>encoding</em> <a class="footnote-reference" href="#id2" id="id1">[1]</a> is the output encoding
+(default is US-ASCII).</dd></dl>
+
+</dd></dl>
+
+<p>This is the XML file that is going to be manipulated:</p>
+<div class="highlight-python"><pre>&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Example page&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;p&gt;Moved to &lt;a href="http://example.org/"&gt;example.org&lt;/a&gt;
+        or &lt;a href="http://example.com/"&gt;example.com&lt;/a&gt;.&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</pre>
+</div>
+<p>Example of changing the attribute “target” of every link in first paragraph:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">xml.etree.ElementTree</span> <span class="kn">import</span> <span class="n">ElementTree</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tree</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s">"index.xhtml"</span><span class="p">)</span>
+<span class="go">&lt;Element html at b7d3f1ec&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">"body/p"</span><span class="p">)</span>     <span class="c"># Finds first occurrence of tag p in body</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span>
+<span class="go">&lt;Element p at 8416e0c&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">links</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">getiterator</span><span class="p">(</span><span class="s">"a"</span><span class="p">)</span>  <span class="c"># Returns list of all links</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">links</span>
+<span class="go">[&lt;Element a at b7d4f9ec&gt;, &lt;Element a at b7d4fb0c&gt;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">links</span><span class="p">:</span>             <span class="c"># Iterates through all found links</span>
+<span class="gp">... </span>    <span class="n">i</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s">"target"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"blank"</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tree</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"output.xhtml"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="qname-objects">
+<span id="elementtree-qname-objects"></span><h2>20.13.4. QName Objects<a class="headerlink" href="#qname-objects" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="xml.etree.ElementTree.QName">
+<em class="property">
+class </em><tt class="descclassname">xml.etree.ElementTree.</tt><tt class="descname">QName</tt><big>(</big><em>text_or_uri</em><span class="optional">[</span>, <em>tag</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.QName" title="Permalink to this definition">¶</a></dt>
+<dd>QName wrapper.  This can be used to wrap a QName attribute value, in order to
+get proper namespace handling on output. <em>text_or_uri</em> is a string containing
+the QName value, in the form {uri}local, or, if the tag argument is given, the
+URI part of a QName. If <em>tag</em> is given, the first argument is interpreted as an
+URI, and this argument is interpreted as a local name. <a title="xml.etree.ElementTree.QName" class="reference internal" href="#xml.etree.ElementTree.QName"><tt class="xref docutils literal"><span class="pre">QName</span></tt></a> instances
+are opaque.</dd></dl>
+
+</div>
+<div class="section" id="treebuilder-objects">
+<span id="elementtree-treebuilder-objects"></span><h2>20.13.5. TreeBuilder Objects<a class="headerlink" href="#treebuilder-objects" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="xml.etree.ElementTree.TreeBuilder">
+<em class="property">
+class </em><tt class="descclassname">xml.etree.ElementTree.</tt><tt class="descname">TreeBuilder</tt><big>(</big><span class="optional">[</span><em>element_factory</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.TreeBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generic element structure builder.  This builder converts a sequence of start,
+data, and end method calls to a well-formed element structure. You can use this
+class to build an element structure using a custom XML parser, or a parser for
+some other XML-like format. The <em>element_factory</em> is called to create new
+Element instances when given.</p>
+<dl class="method">
+<dt id="xml.etree.ElementTree.TreeBuilder.close">
+<tt class="descname">close</tt><big>(</big><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.TreeBuilder.close" title="Permalink to this definition">¶</a></dt>
+<dd>Flushes the parser buffers, and returns the toplevel document
+element. Returns an Element instance.</dd></dl>
+
+<dl class="method">
+<dt id="xml.etree.ElementTree.TreeBuilder.data">
+<tt class="descname">data</tt><big>(</big><em>data</em><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.TreeBuilder.data" title="Permalink to this definition">¶</a></dt>
+<dd>Adds text to the current element. <em>data</em> is a string.  This should be
+either an 8-bit string containing ASCII text, or a Unicode string.</dd></dl>
+
+<dl class="method">
+<dt id="xml.etree.ElementTree.TreeBuilder.end">
+<tt class="descname">end</tt><big>(</big><em>tag</em><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.TreeBuilder.end" title="Permalink to this definition">¶</a></dt>
+<dd>Closes the current element. <em>tag</em> is the element name. Returns the closed
+element.</dd></dl>
+
+<dl class="method">
+<dt id="xml.etree.ElementTree.TreeBuilder.start">
+<tt class="descname">start</tt><big>(</big><em>tag</em>, <em>attrs</em><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.TreeBuilder.start" title="Permalink to this definition">¶</a></dt>
+<dd>Opens a new element. <em>tag</em> is the element name. <em>attrs</em> is a dictionary
+containing element attributes. Returns the opened element.</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="xmltreebuilder-objects">
+<span id="elementtree-xmltreebuilder-objects"></span><h2>20.13.6. XMLTreeBuilder Objects<a class="headerlink" href="#xmltreebuilder-objects" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="xml.etree.ElementTree.XMLTreeBuilder">
+<em class="property">
+class </em><tt class="descclassname">xml.etree.ElementTree.</tt><tt class="descname">XMLTreeBuilder</tt><big>(</big><span class="optional">[</span><em>html</em><span class="optional">]</span><span class="optional">[</span>, <em>target</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.XMLTreeBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Element structure builder for XML source data, based on the expat parser. <em>html</em>
+are predefined HTML entities.  This flag is not supported by the current
+implementation. <em>target</em> is the target object.  If omitted, the builder uses an
+instance of the standard TreeBuilder class.</p>
+<dl class="method">
+<dt id="xml.etree.ElementTree.XMLTreeBuilder.close">
+<tt class="descname">close</tt><big>(</big><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.XMLTreeBuilder.close" title="Permalink to this definition">¶</a></dt>
+<dd>Finishes feeding data to the parser. Returns an element structure.</dd></dl>
+
+<dl class="method">
+<dt id="xml.etree.ElementTree.XMLTreeBuilder.doctype">
+<tt class="descname">doctype</tt><big>(</big><em>name</em>, <em>pubid</em>, <em>system</em><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.XMLTreeBuilder.doctype" title="Permalink to this definition">¶</a></dt>
+<dd>Handles a doctype declaration. <em>name</em> is the doctype name. <em>pubid</em> is the
+public identifier. <em>system</em> is the system identifier.</dd></dl>
+
+<dl class="method">
+<dt id="xml.etree.ElementTree.XMLTreeBuilder.feed">
+<tt class="descname">feed</tt><big>(</big><em>data</em><big>)</big><a class="headerlink" href="#xml.etree.ElementTree.XMLTreeBuilder.feed" title="Permalink to this definition">¶</a></dt>
+<dd>Feeds data to the parser. <em>data</em> is encoded data.</dd></dl>
+
+</dd></dl>
+
+<p><a title="xml.etree.ElementTree.XMLTreeBuilder.feed" class="reference internal" href="#xml.etree.ElementTree.XMLTreeBuilder.feed"><tt class="xref docutils literal"><span class="pre">XMLTreeBuilder.feed()</span></tt></a> calls <em>target</em>‘s <tt class="xref docutils literal"><span class="pre">start()</span></tt> method
+for each opening tag, its <tt class="xref docutils literal"><span class="pre">end()</span></tt> method for each closing tag,
+and data is processed by method <tt class="xref docutils literal"><span class="pre">data()</span></tt>. <a title="xml.etree.ElementTree.XMLTreeBuilder.close" class="reference internal" href="#xml.etree.ElementTree.XMLTreeBuilder.close"><tt class="xref docutils literal"><span class="pre">XMLTreeBuilder.close()</span></tt></a>
+calls <em>target</em>‘s method <tt class="xref docutils literal"><span class="pre">close()</span></tt>.
+<a title="xml.etree.ElementTree.XMLTreeBuilder" class="reference internal" href="#xml.etree.ElementTree.XMLTreeBuilder"><tt class="xref docutils literal"><span class="pre">XMLTreeBuilder</span></tt></a> can be used not only for building a tree structure.
+This is an example of counting the maximum depth of an XML file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">xml.etree.ElementTree</span> <span class="kn">import</span> <span class="n">XMLTreeBuilder</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MaxDepth</span><span class="p">:</span>                     <span class="c"># The target object of the parser</span>
+<span class="gp">... </span>    <span class="n">maxDepth</span> <span class="o">=</span> <span class="mf">0</span>
+<span class="gp">... </span>    <span class="n">depth</span> <span class="o">=</span> <span class="mf">0</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">attrib</span><span class="p">):</span>   <span class="c"># Called for each opening tag.</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">depth</span> <span class="o">+=</span> <span class="mf">1</span>
+<span class="gp">... </span>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">depth</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxDepth</span><span class="p">:</span>
+<span class="gp">... </span>            <span class="bp">self</span><span class="o">.</span><span class="n">maxDepth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">depth</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>             <span class="c"># Called for each closing tag.</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">depth</span> <span class="o">-=</span> <span class="mf">1</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">pass</span>            <span class="c"># We do not need to do anything with data.</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    <span class="c"># Called when all data has been parsed.</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxDepth</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">target</span> <span class="o">=</span> <span class="n">MaxDepth</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span> <span class="o">=</span> <span class="n">XMLTreeBuilder</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">exampleXml</span> <span class="o">=</span> <span class="s">"""</span>
+<span class="gp">... </span><span class="s">&lt;a&gt;</span>
+<span class="gp">... </span><span class="s">  &lt;b&gt;</span>
+<span class="gp">... </span><span class="s">  &lt;/b&gt;</span>
+<span class="gp">... </span><span class="s">  &lt;b&gt;</span>
+<span class="gp">... </span><span class="s">    &lt;c&gt;</span>
+<span class="gp">... </span><span class="s">      &lt;d&gt;</span>
+<span class="gp">... </span><span class="s">      &lt;/d&gt;</span>
+<span class="gp">... </span><span class="s">    &lt;/c&gt;</span>
+<span class="gp">... </span><span class="s">  &lt;/b&gt;</span>
+<span class="gp">... </span><span class="s">&lt;/a&gt;"""</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="n">exampleXml</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="go">4</span>
+</pre></div>
+</div>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" id="id2" frame="void" rules="none">
+<colgroup><col class="label"><col></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td>The encoding string included in XML output should conform to the
+appropriate standards. For example, “UTF-8” is valid, but “UTF8” is
+not. See <a class="reference external" href="http://www.w3.org/TR/2006/REC-xml11-20060816/#NT-EncodingDecl">http://www.w3.org/TR/2006/REC-xml11-20060816/#NT-EncodingDecl</a>
+and <a class="reference external" href="http://www.iana.org/assignments/character-sets">http://www.iana.org/assignments/character-sets</a>.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="http://docs.python.org/contents.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">20.13. <tt class="docutils literal"><span class="pre">xml.etree.ElementTree</span></tt> — The ElementTree XML API</a><ul>
+<li><a class="reference external" href="#functions">20.13.1. Functions</a></li>
+<li><a class="reference external" href="#the-element-interface">20.13.2. The Element Interface</a></li>
+<li><a class="reference external" href="#elementtree-objects">20.13.3. ElementTree Objects</a></li>
+<li><a class="reference external" href="#qname-objects">20.13.4. QName Objects</a></li>
+<li><a class="reference external" href="#treebuilder-objects">20.13.5. TreeBuilder Objects</a></li>
+<li><a class="reference external" href="#xmltreebuilder-objects">20.13.6. XMLTreeBuilder Objects</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="http://docs.python.org/library/xml.sax.reader.html" title="previous chapter">20.12. <tt class="docutils literal"><span class="pre">xml.sax.xmlreader</span></tt> — Interface for XML parsers</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="http://docs.python.org/library/internet.html" title="next chapter">21. Internet Protocols and Support</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="http://docs.python.org/_sources/library/xml.etree.elementtree.txt" rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input name="q" size="18" type="text">
+                <input value="Go" type="submit">
+                <input name="check_keywords" value="yes" type="hidden">
+                <input name="area" value="default" type="hidden">
+              </form>
+              <p class="searchtip" style="font-size: 90%;">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px;">
+          <a href="http://docs.python.org/genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="http://docs.python.org/modindex.html" title="Global Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="http://docs.python.org/library/internet.html" title="21. Internet Protocols and Support">next</a> |</li>
+        <li class="right">
+          <a href="http://docs.python.org/library/xml.sax.reader.html" title="20.12. xml.sax.xmlreader — Interface for XML parsers">previous</a> |</li>
+        <li><img src="xml.etree.elementtree_files/py.png" alt="" style="vertical-align: middle; margin-top: -1px;"></li>
+        <li><a href="http://docs.python.org/index.html">Python v2.6.2 documentation</a> »</li>
+
+          <li><a href="http://docs.python.org/library/index.html">The Python Standard Library</a> »</li>
+          <li><a href="http://docs.python.org/library/markup.html">20. Structured Markup Processing Tools</a> »</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      © <a href="http://docs.python.org/copyright.html">Copyright</a> 1990-2009, Python Software Foundation.
+      Last updated on Jun 18, 2009.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.1.
+    </div>
+  </body></html>

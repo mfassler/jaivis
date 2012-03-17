@@ -1,0 +1,74 @@
+
+
+##
+## A UDP packet starts with a "from userID" and a command
+## 
+## the server for that particular chat room will tell the Viewer what IP
+## address and UDP port number to expect updates from.  A single IP/Port
+## can manage up to 65535 (16-bit) JIDs.  
+##
+## So the Viewer will have a table that connects:
+##    Source IP address -> Source Port -> UserID -> JID
+##  ie, only certain IP addresses will be allowed to update information
+## about certain JIDs.  (In many, many cases the "Allowed IP addresses" will
+## simply be the Jabber server, or the localhost event handler.  This particular
+## setup is to allow the possibility for videogames played at LAN parties 
+## that require fast updates.)
+##
+## A single IP/Port might manage multiple JIDs (eg, a server or local
+## event handler might manage all JIDs), and a single JID might be handled
+## by multiple IP/Ports (eg, you might get updates from both the client
+## machine and from the server).  
+##
+
+## In the case of a "move" command, the UDP packet will be structured like this:
+
+16-bit unsignedInt UserID   
+6-bit unsignedInt command 
+2-bit axis of rotation (an object can only spin on one of its own 3 principle axes.
+                        this actually covers the *vast* majority of physically realistic
+                        situations (people, airplanes, spaceships, wheels, cars))
+                          --This is the *local* axis, not the world axis
+                          -- this is only used for angular *velocity* not absolute
+                             positioning.  Absolute angular position is specified
+                             below as Theta, Psi, Roll in absolute, world coordinates
+8-bit unsignedInt subcommand
+
+32-bit FloatingPoint X-position
+32-bit FloatingPoint Y-position
+32-bit FloatingPoint Z-position
+
+32-bit FloatingPoint X-velocity
+32-bit FloatingPoint Y-velocity
+32-bit FloatingPoint Z-velocity
+
+16-bit FloatingPoint theta-position (or "yaw", RotateZ)  --world coordinates
+16-bit FloatingPoint phi-position (or "pitch", RotateX)  --world coordinates
+16-bit FloatingPoint roll-position (or "roll", RotateY)  --world coordinates
+
+16-bit FloatingPoint headTheta-position  --relative to the body
+16-bit FloatingPoint headPhi-position    --relative to the body
+16-bit FloatingPoint headRoll-position   --relative to the body
+
+16-bit FloatingPoint angular velocity (about the principle axis specified above)
+
+
+
+
+########
+#######
+
+World Coordinates:
+ "X" points "east"
+ "Y" points "north"
+ "Z" points up
+
+ theta (also called yaw, or RotateZ) is the negative of compass direction (90 points west)
+ phi (also call pitch, or RotateX) is "how far above the horizon are you looking"
+ roll (or RotateY) is like the roll of a plane
+
+For chatrooms with people walking around, all x,y,z coordinates are in meters.  All
+speeds are in meters/second.  Angles are in degrees.  (Internally, there are bits of
+the code that use radians -- but all protocols and files should use degrees.)  
+
+

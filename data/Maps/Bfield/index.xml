@@ -1,0 +1,38 @@
+
+<!-- This map isn't terribly useful or anything.  This is just 
+a test of some VTK functionality.  -->
+
+<VTKpipelines>
+
+<glyph name="stickArrows">
+  <GlyphSource2D SetGlyphType="arrow" SetFilled="0" SetScale="3.0"/>
+</glyph>
+
+<glyph name="cube">
+  <CubeSource SetXLength="0.2" SetYLength="0.2" SetZLength="0.2"/>
+</glyph>
+
+<Actor name="magnetic field">
+  <PolyDataMapper>
+    <Glyph3D SetSource="stickArrows" SetScaleFactor="3.0">
+      <UnstructuredGridReader SetFileName="new-deltas.vtk" SetVectorsName="delta-B,Gauss">
+      </UnstructuredGridReader>
+    </Glyph3D>
+  </PolyDataMapper>
+</Actor>
+
+<Actor name="copper rods" color="#ad6900">
+  <DataSetMapper>
+    <UnstructuredGridReader SetFileName="copper-rods.vtk">
+    </UnstructuredGridReader>
+  </DataSetMapper>
+</Actor>
+
+<Actor name="outer cylinder" color="#00b6b5" SetOpacity="0.29">
+  <DataSetMapper>
+    <UnstructuredGridReader SetFileName="cylinder.vtk">
+    </UnstructuredGridReader>
+  </DataSetMapper>
+</Actor>
+</VTKpipelines>
+

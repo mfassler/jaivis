@@ -1,0 +1,31 @@
+<VTKpipelines>
+
+<Actor name="origin" SetColor="1, 0.3, 0.4">
+  <PolyDataMapper>
+    <SphereSource SetRadius="0.1"/>
+  </PolyDataMapper>
+</Actor>
+
+<!-- The x-axis points East. -->
+<Actor name="east" SetColor="1.0, 0.0, 0.0">
+  <PolyDataMapper>
+    <ConeSource SetHeight="1.2" SetRadius="0.12" SetCenter="0.75, 0.0, 0.0" SetDirection="1.0, 0.0, 0.0"/>
+  </PolyDataMapper>
+</Actor>
+
+<!-- The y-axis points North. -->
+<Actor name="north" SetColor="1.0, 1.0, 0.0">
+  <PolyDataMapper>
+    <ConeSource SetHeight="1.0" SetRadius="0.12" SetCenter="0.0, 0.75, 0.0" SetDirection="0.0, 1.0, 0.0"/>
+  </PolyDataMapper>
+</Actor>
+<!-- The z-axis points Up. -->
+<Actor name="up" SetColor="0.75, 0.0, 1.0">
+  <PolyDataMapper>
+    <ConeSource SetHeight="1.0" SetRadius="0.12" SetCenter="0.0, 0.0, 0.75" SetDirection="0.0, 0.0, 1.0"/>
+  </PolyDataMapper>
+</Actor>
+
+
+</VTKpipelines>
+

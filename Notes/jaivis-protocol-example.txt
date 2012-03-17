@@ -1,0 +1,62 @@
+
+###  This are my thinking-out-loud ramblings about how I might want
+###  the Jaivis protocol look to Jabber...
+###
+
+## From the chatroom server:
+
+<jaivis
+	action="session-initiate"
+        viewertype="People"
+	physics="none"
+	collisiondetection="none">
+		<map><uri>http://somewhere.com/jaivis-maps/TLM-bar.xml</uri></map>
+</jaivis>
+
+##  viewertype
+#
+# I imagine a few different possible viewertypes:
+#
+#   "People"  --  people walking around in a virtual world, similar to
+#                 SecondLife
+#   "Flight Simulator" -- for flying airplanes.  The "characters" are
+#                         different airplanes
+#   "Space Fleet"  -- a "character" is a swarm of spaceships
+#   "Plasma"  -- a "character" is a swarm of glowing balls that streak
+#                through space (like those cool OpenGL screensavers).
+
+
+##  physics
+#
+# I imagine that the jaivis software would come with handful of different
+# physics engines, eg:  "Simple Newtonian", "Newtonian--Low gravity".
+#
+
+
+##  collisiondetection
+#
+# Code still needs to be written for collision detection.  Perhaps
+# there might be a couple different ways to do collision detection...
+
+
+
+## From each user:
+
+<jaivis
+	action="session-join">
+		<avatar>Human</avatar>
+		<transport>
+			<candidate
+				ip="10.0.0.1"
+				protocol="udp"
+				port="23421"/>
+		</transport>
+</jaivis>
+
+# ... and all the users would send and receive UDP packet to and from
+# each other.  The UDP packets wouldn't necessarily have to go through
+# the server.  (Although, for video games, you might want to have all
+# the packets go through the server for verification -- ie, the server
+# has one "official" list of who is where, and the server makes sure
+# that all the clients are following the laws of physics.)
+

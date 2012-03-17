@@ -1,0 +1,292 @@
+<html>
+<body>
+
+<center><h2>Jabber + VTK = Jaivis.</h2></center>
+<hr>
+<h4>
+Prerequisites
+</h4>
+</hr>
+<p>
+Jaivis requires:
+<ul>
+  <li> <a href="http://www.python.org/">Python</a></li>
+  <li> <a href="http://www.vtk.org/">VTK</a> (including the Python bindings) </li>
+  <li> <a href="http://numeric.scipy.org/">numpy</a> </li>
+  <li> <a href="http://www.dest-unreach.org/socat/">socat</a> or netcat (or simlar to talk to Unix domain sockets) </li>
+</ul>
+</p>
+<p>
+You might need to change some pathnames.  Edit this file:
+<pre>
+  jv/jvPaths.py
+</pre>
+</p>
+
+<p>
+To launch Jaivis:
+<pre>
+$ python jaivis.py VirtualWorldForPeople
+</pre>
+<center>
+<img src="screenshots/first.png" border="0"/>
+</center>
+</p>
+<br>
+<hr>
+<h4>Movement</h4>
+<p>
+You can move around inside Jaivis.  Right now the movement is videogame-style:<br>
+<br>
+<br>
+<center>
+<table border="0" width="700px">
+<tr>
+  <td align="center">
+    Left hand<br>
+    on the keyboard<br>
+    to move:
+  </td>
+  <td align="center">
+    Press-and-hold<br>
+    the middle mouse button<br>
+     to look around:
+  </td>
+</tr>
+<tr>
+  <td align="center">
+    <img src="keyboard-controls.png" border="0"/>
+  </td>
+  <td align="center">
+    <img src="mouse.png" border="0"/>
+  </td>
+</tr>
+</table>
+</center>
+</p>
+<br>
+<hr>
+<h4>Architecture</h4>
+
+<p>
+Jaivis is built on top of VTK <small>(The <a href="http://www.vtk.org/">Visualization Toolkit</a>)</small> which
+is built on top of OpenGL:
+<center>
+<img src="jaivis-basic.png" border="0"/>
+</center>
+<br>
+</p>
+<p>
+Another wrapper on top of VTK?&nbsp; Jaivis adds a couple things to VTK: 
+an animation loop and a custom interactor <small>(via vtkRenderWindowInteractor())</small>.  This
+allows you to move around inside of your visualization.  
+<br>
+<br>
+If you know Python and VTK, it's possible to create your own interactor.  Jaivis
+isn't married to any particular style of interaction.
+</p>
+<br>
+<p>
+There are three major interfaces:
+<ul>
+<li>Jaivis is controlled via interactive socket (Unix domain socket).  The language is RESTful (-ish).</li>
+<li>Jaivis loads visualizations via an XML file format.</li>
+<li>Jaivis communicates with other Jaivis clients via UDP.</li>
+</ul>
+<center>
+<img src="jaivis-intermediate.png" border="0"/>
+</center>
+</p>
+
+<br>
+<hr>
+<h4>RESTful-ish Control</h4>
+<p>
+Most of Jaivis's behavior is controlled through a Unix domain socket.
+I like to use "socat" to control Jaivis.  For example: 
+<pre>
+$ socat READLINE UNIX-CONNECT:/tmp/jv-wazza
+</pre>
+this should give you a nice, GNU-readline-style interface to Jaivis.  
+</p>
+<p>
+From socat, you can type commands to Jaivis:
+<pre>
+> GET maps
+BeachSunset
+CompassRose
+
+</pre>
+</p>
+<p>
+You can put text onto the 4-line On-Screen Display:
+<pre>
+> POST osd Hello, My name is Inigo Montoya!
+</pre>
+<p>
+
+<p>
+Let's load and remove some maps:
+<pre>
+> REMOVE maps/BeachSunset
+</pre>
+You should see only the compass rose at the origin.  Let's add the beach again:
+<pre>
+> LOAD map BeachSunset
+ Jaivis/1.0 200 OK
+</pre>
+</p>
+
+<p>
+Loading a map twice should generate an error:
+<pre>
+> LOAD map BeachSunset
+ Map BeachSunset already exists.
+</pre>
+</p>
+
+<p>
+Let's add a bar to the beach:
+<pre>
+> LOAD map TheLaughingMan
+ Jaivis/1.0 200 OK
+</pre>
+<img src="screenshots/second-with-bar.png" border="0"/>
+
+</p>
+
+<p>
+Let's add a bartender:
+<pre>
+> LOAD character jid:bartender@jabber.org race:MechAngel
+ Jaivis/1.0 200 OK
+</pre>
+By default, he's sitting at the origin, underneath the floor,
+so let's move him to the bar:
+<pre>
+> MOVE characters/bartender@jabber.org x:2.2 y:0.2 z:2.3
+>
+</pre>
+Note that he's facing away from the customers.  By default,
+characters are created facing north.  Let's turn him so that he's
+facing the customers:
+<pre>
+> ROTATE characters/bartender@jabber.org theta:180
+>
+</pre>
+<img src="screenshots/bar-with-bartender.png" border="0"/><br>
+(Note that theta is the negative of compass direction.)
+</p>
+<p>
+More stuff:
+<pre>
+> GET characters
+username@jabber.org
+bartender@jabber.org
+> REMOVE characters/bartender@jabber.org
+>
+</pre>
+</p>
+<p>
+A position can be specified when you first load a character.  Let's
+put the bartender on the stage:
+<pre>
+> LOAD character jid:bartender@jabber.org race:MechAngel x:4.5 y:-17.0 z:2.2
+</pre>
+</p>
+
+<p>
+Using socat's READLINE interface, you can use the up-arrow to go back to previous commands.  
+This makes it easier to tinker while making changes to your maps and avatars.  
+</p>
+
+
+<br>
+<hr>
+
+<h4>XML File Format</h4>
+<p>
+You use XML to describe your VTK pipelines.  My goal is to 
+follow VTK's naming conventions and structures as closely as possible 
+in the file format.  This is usually possible, but not always. <small>(XML is
+a strict tree structure, whereas VTK is a little bit more flexible
+than that.)</small>
+</p>
+<p>
+Example XML file:<br>
+<pre>
+  &lt;VTKpipelines&gt;
+
+    &lt;Actor name="origin" SetColor="1, 0.3, 0.4"&gt;
+      &lt;PolyDataMapper&gt;
+        &lt;SphereSource SetRadius="0.1"/&gt;
+      &lt;/PolyDataMapper&gt;
+    &lt;/Actor&gt;
+
+  &lt;/VTKpipelines&gt;
+</pre>
+<br>
+Notes on the format:
+<ul>
+  <li>One-to-one naming:
+    <ul>
+      <li>The &lt;SphereSource&gt; element <small>(in XML)</small> calls the vtkSphereSource() class <small>(in running code)</small>.</li>
+      <li>The &lt;PolyDataMapper&gt; element calls the vtkPolyDataMapper() class.</li>
+      <li>The &lt;Actor&gt; element calls the vtkActor() class.</li>
+    </ul>
+  </li>
+  <br><li>Typically, the attributes of an element call the member functions of the class.  For example:
+    <ul>
+      <li>In &lt;SphereSource&gt;, the "SetRadius" attribute calls the SetRadius() member function.</li>
+    </ul>
+  </li>
+  <br><li>The &lt;Actor&gt; element has a "name" attribute.  All 1st-level elements <small>(ie, 
+the root-level elements contained inside the &lt;VTKpipelines&gt; element)</small> must be named.
+This allows us to reference some elements by name (ie, a variable name) which allows us
+to break the rigid XML tree structure when necessary.</li>
+  <br><li>Any item that supports the "SetColor" attribute also supports a "color" attribute.
+    <ul>
+      <li>"SetColor" uses VTK's color convention (eg, white:  SetColor="1.0, 1.0, 1.0")</li>
+      <li>"color" uses the WWW color convention (eg, white:  color="#ffffff").</li>
+    </ul>
+  </li>
+</ul>
+</p>
+
+<br><br>
+
+<hr>
+<h4>Future Ideas</h4>
+
+<p>
+In the long-run, I'd like to make things much more general and abstract:
+<ul>
+  <li>
+    Individual JIDs could be programs running physics simulations,
+    displaying their results into the Jaivis (ie, VTK) window. 
+  </li>
+  <li>
+    Or you could make a flight simulator.  A person's avatar
+    would be an airplane, simulating physics.
+  </li>
+  <li>
+   Or something really strange and abstract:  a person's avatar
+   could be some glowing fog, or a swarm of bees...  avatars might
+   interact with each other via electromagnetic fields.
+  </li>
+  <li>
+   Individual JIDs could be daemons on your servers, monitoring
+   their health.  Their avatars could be graphs and pie charts.
+   You could walk around a 3-D world of displays and gauges showing
+   how your datacenter is doing.
+  </li>
+  <li>
+   Personally, I'd like to make the animations and gestures of
+   (human-looking) avatars be controlled by neural networks
+   simulating spinal reflexes and the like.
+  </li>
+</ul>
+
+</body>
+</html>
+

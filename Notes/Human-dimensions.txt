@@ -1,0 +1,74 @@
+
+### The dimensions of your fearless programmer:
+
+floor (no shoes) to indentation of waist (top of hip-bone, I think):
+96cm
+
+floor to top of shoulder:
+145cm (-ish)
+
+floor to top of head:
+173cm
+
+circumference of head (parallel to horizon, around the ears and forehead):
+61cm
+
+width of skull:
+16cm
+
+height of head (chin to top):
+25cm
+
+floor to fulcrum of knee:
+47cm
+
+fulcrum of wrist to fulcrum of elbow:
+26cm
+
+shoulder to elbow:
+28cm
+
+shoulders, fulcrum-to-fulcrum:
+41cm
+
+shoulders, outside-to-outside
+48cm
+
+
+
+Floor to fulcrum of ankle:
+9cm
+
+fulcrum of ankle to fulcrum of knee (calculated):
+(47cm - 9cm) = 38cm
+
+fulcrum of knee to fulcrum of hip (calculated):
+(96cm - 47cm) = 49cm
+
+diameter of thigh:
+16cm (-ish)
+
+
+length of hand (tip of middle finger to fulcrum of wrist):
+20 cm
+
+length of hand (fulcrum of wrist to main knuckle of index finder):
+~10 cm
+
+length of middle finger (main knuckle to tip):
+10cm
+
+width of hand:
+8.5 cm
+
+thickness of hand:
+3.5cm (-ish)
+
+length of foot 
+25 cm
+
+tip of toe to main toe knuckle:
+7 cm
+
+width of foot:
+10cm -ish

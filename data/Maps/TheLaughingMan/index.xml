@@ -1,0 +1,186 @@
+
+<VTKpipelines>
+
+
+<!-- A given texture MUST be declared before an actor can use it. -->
+<Texture name="masonry" SetInterpolate="1">
+  <BMPReader SetFileName="textures/masonry.bmp"/>
+</Texture>
+
+<Texture name="woodFlooring" SetInterpolate="1">
+  <BMPReader SetFileName="textures/woodFlooring.bmp"/>
+</Texture>
+
+<!--
+<Texture name="LightCamo" SetInterpolate="1">
+  <BMPReader SetFileName="textures/Light-Camo.bmp"/>
+</Texture>
+
+<Texture name="LightCamo" SetInterpolate="1">
+  <BMPReader SetFileName="textures-from-SL/weave.bmp"/>
+</Texture>
+-->
+
+<Texture name="grayStone" SetInterpolate="1">
+  <BMPReader SetFileName="textures/graystone.bmp"/>
+</Texture>
+
+<Texture name="brownSwirl">
+  <BMPReader SetFileName="textures/brown053-2.bmp"/>
+</Texture>
+
+<Actor name="foundationTop" SetTexture="grayStone">
+  <DataSetMapper>
+    <TextureMapToPlane SetOrigin="0.0, 0.0, 0.0" SetPoint1="0.0, -5.0, 0.0" SetPoint2="5.0, 0.0, 0.0">
+      <UnstructuredGridReader SetFileName="foundationTop.vtk"/>
+    </TextureMapToPlane>
+  </DataSetMapper>
+</Actor>
+
+<Actor name="foundationSouth" SetTexture="grayStone">
+  <DataSetMapper>
+    <TextureMapToPlane SetOrigin="0.0, 0.0, 0.0" SetPoint1="4.0, 0.0, 0.0" SetPoint2="0.0, 0.0, 4.0">
+      <UnstructuredGridReader SetFileName="foundationSouth.vtk"/>
+    </TextureMapToPlane>
+  </DataSetMapper>
+</Actor>
+
+<Actor name="foundationWest" SetTexture="grayStone">
+  <DataSetMapper>
+    <TextureMapToPlane SetOrigin="0.0, 0.0, 0.0" SetPoint1="0.0, 4.0, 0.0" SetPoint2="0.0, 0.0, 4.0">
+      <UnstructuredGridReader SetFileName="foundationWest.vtk"/>
+    </TextureMapToPlane>
+  </DataSetMapper>
+</Actor>
+
+<Actor name="foundationNorthWest" SetTexture="grayStone">
+  <DataSetMapper>
+    <TextureMapToPlane SetOrigin="0.0, 0.0, 0.0" SetPoint1="0.0, 4.0, 0.0" SetPoint2="0.0, 0.0, 4.0">
+      <UnstructuredGridReader SetFileName="foundationNorthWest.vtk"/>
+    </TextureMapToPlane>
+  </DataSetMapper>
+</Actor>
+
+<Actor name="foundationNorth" SetTexture="grayStone">
+  <DataSetMapper>
+    <TextureMapToPlane SetOrigin="0.0, 0.0, 0.0" SetPoint1="4.0, 0.0, 0.0" SetPoint2="0.0, 0.0, 4.0">
+      <UnstructuredGridReader SetFileName="foundationNorth.vtk"/>
+    </TextureMapToPlane>
+  </DataSetMapper>
+</Actor>
+
+
+
+<Actor name="backwall" SetTexture="masonry">
+  <DataSetMapper>
+      <TextureMapToPlane SetOrigin="4.0, 2.0, 0.0" SetPoint1="4.0, 2.0, 3.0" SetPoint2="0.0, 2.0, 0.0">
+        <UnstructuredGridReader SetFileName="backwall.vtk"/>
+      </TextureMapToPlane>
+  </DataSetMapper>
+</Actor>
+
+
+
+<Actor name="Counter" SetTexture="brownSwirl" SetPosition="1.5, -0.8, 2.5" SetOrientation="0.0, 0.0, 96.0">
+  <PolyDataMapper>
+    <CubeSource SetXLength="0.4" SetYLength="4.7" SetZLength="1.0"/>
+  </PolyDataMapper>
+</Actor>
+
+<Actor name="CounterTop" href="http://slashdot.org" SetTexture="masonry" color="#4c26FF" hovercolor="#c08080" SetPosition="1.5, -0.8, 3.0375" SetOrientation="0.0, 0.0, 96.0"> 
+<!--<Actor name="CounterTop" href="http://slashdot.org" SetTexture="masonry" color="#FFFFFF" hovercolor="#c08080" SetPosition="1.5, -0.8, 3.0375" SetOrientation="0.0, 0.0, 96.0">-->
+  <PolyDataMapper>
+    <CubeSource SetXLength="0.7" SetYLength="5.0" SetZLength="0.075"/>
+  </PolyDataMapper>
+</Actor>
+
+<Actor name="Stage" SetTexture="woodFlooring" SetPosition="4.5, -17.0, 2.02" SetOrientation="0.0, 0.0, -22.44">
+  <PolyDataMapper>
+    <CubeSource SetXLength="5.0" SetYLength="4.0" SetZLength="0.36"/>
+  </PolyDataMapper>
+</Actor>
+
+<!--
+<Actor name="canvasRoof1" SetTexture="LightCamo">
+  <DataSetMapper>
+    <TextureMapToPlane SetOrigin="0.0, 0.0, 0.0" SetPoint1="3.0, 0.0, 0.0" SetPoint2="0.0, 3.0, 0.0">
+      <UnstructuredGridReader SetFileName="canvasRoof1.vtk"/>
+    </TextureMapToPlane>
+  </DataSetMapper>
+</Actor>
+-->
+
+<Actor name="floorTop" SetTexture="woodFlooring">
+  <DataSetMapper>
+    <TextureMapToPlane SetOrigin="0.0, 0.0, 0.0" SetPoint1="3.0, 0.0, 0.0" SetPoint2="0.0, 3.0, 0.0">
+      <UnstructuredGridReader SetFileName="floorTop.vtk"/>
+    </TextureMapToPlane>
+  </DataSetMapper>
+</Actor>
+
+<Actor name="floorSouth" SetTexture="woodFlooring">
+  <DataSetMapper>
+    <TextureMapToPlane SetOrigin="0.0, 0.0, 0.0" SetPoint1="3.0, 0.0, 0.0" SetPoint2="0.0, 3.0, 0.0">
+      <UnstructuredGridReader SetFileName="floorSouth.vtk"/>
+    </TextureMapToPlane>
+  </DataSetMapper>
+</Actor>
+
+<Actor name="floorWest" SetTexture="woodFlooring">
+  <DataSetMapper>
+    <TextureMapToPlane SetOrigin="0.0, 0.0, 0.0" SetPoint1="3.0, 0.0, 0.0" SetPoint2="0.0, 3.0, 0.0">
+      <UnstructuredGridReader SetFileName="floorWest.vtk"/>
+    </TextureMapToPlane>
+  </DataSetMapper>
+</Actor>
+
+<Actor name="floorNorthWest" SetTexture="woodFlooring">
+  <DataSetMapper>
+    <TextureMapToPlane SetOrigin="0.0, 0.0, 0.0" SetPoint1="3.0, 0.0, 0.0" SetPoint2="0.0, 3.0, 0.0">
+      <UnstructuredGridReader SetFileName="floorNorthWest.vtk"/>
+    </TextureMapToPlane>
+  </DataSetMapper>
+</Actor>
+
+<Actor name="floorNorth" SetTexture="woodFlooring">
+  <DataSetMapper>
+    <TextureMapToPlane SetOrigin="0.0, 0.0, 0.0" SetPoint1="3.0, 0.0, 0.0" SetPoint2="0.0, 3.0, 0.0">
+      <UnstructuredGridReader SetFileName="floorNorth.vtk"/>
+    </TextureMapToPlane>
+  </DataSetMapper>
+</Actor>
+
+<Actor name="floorEast" SetTexture="woodFlooring">
+  <DataSetMapper>
+    <TextureMapToPlane SetOrigin="0.0, 0.0, 0.0" SetPoint1="3.0, 0.0, 0.0" SetPoint2="0.0, 3.0, 0.0">
+      <UnstructuredGridReader SetFileName="floorEast.vtk"/>
+    </TextureMapToPlane>
+  </DataSetMapper>
+</Actor>
+
+
+
+<Light name="bar north" color="#FFCCCC" SetPositional="1" SetIntensity="0.45"
+       SetPosition="5.5, -1.6, 3.5" SetFocalPoint="-1, 1, 2" />
+
+<!-- A cone to show where the light source is -->
+<Actor name="east" SetColor="1.0, 0.2, 0.2">
+  <PolyDataMapper>
+    <ConeSource SetHeight="0.4" SetRadius="0.1" SetCenter="5.5, -1.6, 3.5" SetDirection="6.5, -2.6, 1.5"/>
+  </PolyDataMapper>
+</Actor>
+
+<!--
+<Actor name="some lines" SetColor="1.0, 0.2, 0.2">
+  <PolyDataMapper>
+    <ContourFilter SetValue="0, 0.25">
+      <ImplicitModeller SetSampleDimensions="110, 40, 20" SetMaximumDistance="0.25" SetModelBounds="-1.0, 1.0, -1.0, 3.0, -1.0, 10.0">
+        <PolyDataReader SetFileName="trailing-cables-poly.vtk"/>
+      </ImplicitModeller>
+    </ContourFilter>
+  </PolyDataMapper>
+</Actor>
+-->
+
+</VTKpipelines>
+
