@@ -24,7 +24,7 @@ class create2dRectangle:
         self.selectRect.SetPoints(self.pts)
         self.selectRect.SetPolys(self.rect)
         self.mapper = vtk.vtkPolyDataMapper2D()
-        self.mapper.SetInput(self.selectRect)
+        self.mapper.SetInputData(self.selectRect)
         self.actor = vtk.vtkActor2D()
         self.actor.SetMapper(self.mapper)
         rprop = self.actor.GetProperty()

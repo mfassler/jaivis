@@ -1,9 +1,14 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
+
+import sys
+if sys.version_info[0] < 3:
+    raise Exception("Must be using Python 3")
 
 # Copyright 2009, Mark Fassler  <spin at eavesdown dot org>
 # Licensed under the GNU GPLv2
 
-import sys, os
+import vtk
+import os
 from optparse import OptionParser
 import logging
 
@@ -51,18 +56,17 @@ logging.basicConfig(filename=LOG_FILENAME,level=logging.DEBUG,)
 logging.debug("\n **** Starting Jaivis ****")
 logging.debug("Debug level set to: %d" % options.debugLevel)
 
-print "viewer_type is: ", viewerType
+print("viewer_type is: ", viewerType)
 
 from jv import viewers
 
 if not viewerType in viewers.AllViewers:
-    print "Viewer not available.  Available viewer types:"
+    print("Viewer not available.  Available viewer types:")
     for i in viewers.AllViewers.keys():
-        print " ", i
+        print(" ", i)
     sys.exit(1)
 
-print
-print "Logfile:  plaintext: %s" % LOG_FILENAME
+print("\nLogfile:  plaintext: %s" % LOG_FILENAME)
 
 # Create the Jaivis (ie, VTK) viewer:
 v = viewers.AllViewers[viewerType]()

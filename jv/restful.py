@@ -58,7 +58,7 @@ def RESTfulHandler(viewer, inputSocket, inputPacket):
             if cObjects[0] == "osd":
                 viewer.PostOSD(pieces[2])
         elif verb == "GET":
-            print cObjects, len(cObjects)
+            print(cObjects, len(cObjects))
             if cObjects[0] == "info":
                 if len(cObjects) > 1:
                     if cObjects[1] == "transport":
