@@ -282,8 +282,8 @@ class VirtualWorldForPeople:
                 conn, addr = self.jvMCSocket.accept()
                 #userUID, userGID = getpeerid(conn)
                 self.MCsocketList.append(conn)
-                conn.send("Jaivis Viewer.  Connection number: %d\nReady.\n" % (len(self.MCsocketList)-1))
-                conn.send("> ")
+                conn.send(b"Jaivis Viewer.  Connection number: %d\nReady.\n" % (len(self.MCsocketList)-1))
+                conn.send(b"> ")
             else:
                 try:
                     inputPacket = input.recv(1024)

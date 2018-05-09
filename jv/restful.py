@@ -20,15 +20,15 @@ def RESTfulHandler(viewer, inputSocket, inputPacket):
     try:
         pieces = inputString.split(None, 2) # maximum of 3 pieces
         verb = pieces[0]
-        cObjects = pieces[1].split('/')
+        cObjects = pieces[1].split(b'/')
     except:
         logging.error("Failed to parse Jaivis command.")
     else:
-        if verb == "LOAD":
-            if cObjects[0] == "map":
+        if verb == b"LOAD":
+            if cObjects[0] == b"map":
                 returnString = viewer.LoadMap(pieces[2])
                 inputSocket.send(" %s\n" % returnString)
-            elif cObjects[0] == "character":
+            elif cObjects[0] == b"character":
                 extraArgs = simpleDict2Dict(pieces[2])
                 returnString = viewer.LoadCharacter(extraArgs['jid'], extraArgs)
                 #ipaddr = extraArgs['transport']['ip']
@@ -36,17 +36,17 @@ def RESTfulHandler(viewer, inputSocket, inputPacket):
                 #viewer.UDPRecipients.append( (ipaddr, int(udpport)) )
                 #viewer.authorizedUDPpackets[ (ipaddr, int(udpport)) ] = [ jid ]
                 inputSocket.send(" %s\n" % returnString)
-        elif verb == "REMOVE":
-            if cObjects[0] == "maps":
+        elif verb == b"REMOVE":
+            if cObjects[0] == b"maps":
                 mapName = cObjects[1]
                 viewer.RemoveMap(mapName)
-            elif cObjects[0] == "characters":
+            elif cObjects[0] == b"characters":
                 jid = cObjects[1]
                 viewer.RemoveCharacter(jid)
-        elif verb == "BINDTO":
+        elif verb == b"BINDTO":
             viewer.BindTo(cObject)
             viewer.AnnounceTransport()
-        elif verb == "PUT":
+        elif verb == b"PUT":
             if cObjects[0] == 'characters':
                 jid = cObjects[1]
                 if cObjects[2] == 'authorizedPackets':
@@ -54,28 +54,28 @@ def RESTfulHandler(viewer, inputSocket, inputPacket):
                     ipaddr = extraArgs['transport']['ip']
                     udpport = extraArgs['transport']['port']
                     viewer.authorizedUDPpackets[ (ipaddr, int(udpport)) ] = [ jid ]
-        elif verb == "POST":
+        elif verb == b"POST":
             if cObjects[0] == "osd":
                 viewer.PostOSD(pieces[2])
-        elif verb == "GET":
+        elif verb == b"GET":
             print(cObjects, len(cObjects))
-            if cObjects[0] == "info":
+            if cObjects[0] == b"info":
                 if len(cObjects) > 1:
-                    if cObjects[1] == "transport":
+                    if cObjects[1] == b"transport":
                         viewer.AnnounceTransport()
                 else:
-                    inputSocket.send("Available info is:\n")
-                    inputSocket.send("info/transport\n")
-            elif cObjects[0] == "maps":
+                    inputSocket.send(b"Available info is:\n")
+                    inputSocket.send(b"info/transport\n")
+            elif cObjects[0] == b"maps":
                 for mapName in viewer.maps:
-                    inputSocket.send("%s\n" % mapName)
+                    inputSocket.send(b"%s\n" % (mapName.encode()))
             elif cObjects[0] == "characters":
                 for jid in viewer.characters:
-                    inputSocket.send("%s\n" % jid)
-        elif verb == "DELETE":
+                    inputSocket.send(b"%s\n" % jid)
+        elif verb == b"DELETE":
             pass
-        elif verb == "MOVE":
-            if cObjects[0] == "characters":
+        elif verb == b"MOVE":
+            if cObjects[0] == b"characters":
                 jid = cObjects[1]
                 extraArgs = simpleDict2Dict(pieces[2])
                 position = ( float(extraArgs['x']), float(extraArgs['y']), float(extraArgs['z']))
@@ -83,8 +83,8 @@ def RESTfulHandler(viewer, inputSocket, inputPacket):
                     viewer.characters[jid].assembly.SetPosition(position)
                 except:
                     logging.error('Failed to SetPosition() in RESTful handler')
-        elif verb == "ROTATE":
-            if cObjects[0] == "characters":
+        elif verb == b"ROTATE":
+            if cObjects[0] == b"characters":
                 jid = cObjects[1]
                 extraArgs = simpleDict2Dict(pieces[2])
                 if not 'phi' in extraArgs:
@@ -100,6 +100,6 @@ def RESTfulHandler(viewer, inputSocket, inputPacket):
                     logging.error('Failed to SetPosition() in RESTful handler')
         else:
             logging.error('Unrecognized command: %s' % pieces[0])
-    inputSocket.send("> ")
+    inputSocket.send(b"> ")
 
 
