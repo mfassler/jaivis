@@ -11,7 +11,7 @@ import os
 base = os.path.split(__file__)[0] # get directory where this module is.
 jvDataDir = os.path.abspath(os.path.join(base, '../data'))+'/'
 if not os.path.exists(jvDataDir):
-    print "cannot find data files in: %s" % (jvDataDir)
+    print("cannot find data files in: %s" % (jvDataDir))
     os.exit(1)
 
 jvCommandSocketFileName = '/tmp/jv-wazza'

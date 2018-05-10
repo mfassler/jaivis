@@ -105,13 +105,13 @@ class VirtualWorldForPeople:
         self.jvIOSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         try:
             self.jvIOSocket.bind( ("localhost", 49005) )
-        except socket.error, err:
-            logging.critical("Failed to bind IO socket: %s" % err)
+        except socket.error as err:
+            logging.critical("Failed to bind IO socket: %s" % (err))
             sys.exit(1)
  
         self.jvIOSocketLocalAddr = self.jvIOSocket.getsockname()
         logging.info("IO socket is bound to: %s" % str(self.jvIOSocketLocalAddr))
-        print "IO_socket:      UDP: %s:%i" % (self.jvIOSocketLocalAddr[0], self.jvIOSocketLocalAddr[1])
+        print("IO_socket:      UDP: %s:%i" % (self.jvIOSocketLocalAddr[0], self.jvIOSocketLocalAddr[1]))
         self.jvIOSocket.setblocking(0)
 
         ##  The "MC" socket is for local master-slave communications
@@ -122,12 +122,12 @@ class VirtualWorldForPeople:
         self.jvMCSocket = socket.socket(socket.AF_UNIX)
         try:
             self.jvMCSocket.bind(jvCommandSocketFileName)
-        except socket.error, err:
-            logging.critical("Failed to bind MC socket: %s" % err)
+        except socket.error as err:
+            logging.critical("Failed to bind MC socket: %s" % (err))
             sys.exit(1)
         self.jvMCSocket.listen(1)
         self.MCsocketList = [self.jvMCSocket]
-        print "MC_socket:     UNIX: %s" % jvCommandSocketFileName
+        print("MC_socket:     UNIX: %s" % (jvCommandSocketFileName))
  
 
         ###  Create the OSDs (On-Screen Displays)  ("status" and "primary")
@@ -229,12 +229,12 @@ class VirtualWorldForPeople:
             for recipient in self.UDPRecipients:
                 try:
                     self.jvIOSocket.connect(recipient)
-                except socket.error, err:
+                except socket.error as err:
                     logging.error("Failed to set destination IP address for UDP packet: %s" % err)
                 try:
                     self.jvIOSocket.send(packet)
-                except socket.error, err:
-                    logging.error("Failed to send UDP packet: %s" % err)
+                except socket.error as err:
+                    logging.error("Failed to send UDP packet: %s" % (err))
 
     def CheckForIO_UDPinput(self):
         try:
@@ -282,18 +282,18 @@ class VirtualWorldForPeople:
                 conn, addr = self.jvMCSocket.accept()
                 #userUID, userGID = getpeerid(conn)
                 self.MCsocketList.append(conn)
-                conn.send("Jaivis Viewer.  Connection number: %d\nReady.\n" % (len(self.MCsocketList)-1))
-                conn.send("> ")
+                conn.send(b"Jaivis Viewer.  Connection number: %d\nReady.\n" % (len(self.MCsocketList)-1))
+                conn.send(b"> ")
             else:
                 try:
                     inputPacket = input.recv(1024)
-                except:
-                    logging.error('Error while attempting to receive data from MC socket')
+                except Exception as err:
+                    logging.error('Error while attempting to receive data from MC socket: %s' % (err))
                 if inputPacket:
                     try:
                         restful.RESTfulHandler(self, input, inputPacket)
-                    except:
-                        logging.error('Failed to execute self.RESTful()')
+                    except Exception as err:
+                        logging.error('Failed to execute self.RESTful(): %s' % (err))
                 else:
                     self.MCsocketList.remove(input)
                     logging.info('An MC socket has been disconnected.')
@@ -319,7 +319,7 @@ class VirtualWorldForPeople:
 
     def AnnounceTransport(self):
         '''Announce our IP address and port number.'''
-        print "Jaivis/1.0 200 OK"
+        print("Jaivis/1.0 200 OK")
         returnString = self.jvIOSocketLocalAddr[0] + ' ' + \
            str(self.jvIOSocketLocalAddr[1]) + '/udp\n'
         sys.stdout.write(returnString)
@@ -436,7 +436,7 @@ class VirtualWorldForPeople:
         else:
             self.ren.SetBackground(1.0, 1.0, 1.0)
         del self.maps[mapname]
-        print "Jaivis/1.0 200 OK"
+        print("Jaivis/1.0 200 OK")
 
     ####
     #### Convert commands into macroAnimations.  No animation is done here.  
@@ -651,9 +651,9 @@ class VirtualWorldForPeople:
                 try:
                     href = self.lastPickedActor.href
                 except:
-                    for chr in self.characters:
-                        if self.lastPickedActor == self.characters[chr].assembly:
-                            print "jid: ", chr
+                    for char in self.characters:
+                        if self.lastPickedActor == self.characters[char].assembly:
+                            print("jid: ", char)
                 else:
                     #command = '/usr/bin/xdg-open ' + href 
                     command = 'echo \#xdg-open ' + href 
@@ -756,9 +756,9 @@ class VirtualWorldForPeople:
             try:
                 href = self.lastPickedActor.href
             except:
-                for chr in self.characters:
-                    if self.lastPickedActor == self.characters[chr].assembly:
-                        self.osdStatus.SetInput("jid: " + str(chr))
+                for char in self.characters:
+                    if self.lastPickedActor == self.characters[char].assembly:
+                        self.osdStatus.SetInput("jid: " + str(char))
             else:
                 self.osdStatus.SetInput(str(href))
             if not pickedActor:

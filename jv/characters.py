@@ -220,9 +220,11 @@ class Human:
 
 class MechAngel:
     ''' See ThreePanelSoul, http://threepanelsoul.com/view.php?date=2009-02-09 for the
-     MechAngel'''
+     MechAngel
+            updated url:  http://www.threepanelsoul.com/comic/on-angels-p2
+    '''
     def __init__ (self, jid):
-	self.jid = jid
+        self.jid = jid
         self.posTimeStamp = time.time()
         self.velocity = numpy.array([0.0, 0.0, 0.0])
         self.axisOfRotation = "z"

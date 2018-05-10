@@ -849,9 +849,9 @@ class MapReader:
         self.logger.debug("Attempting to parse XML...")
         try:
             topElement = ET.fromstring(XMLstring)
-        except xml.parsers.expat.ExpatError, err:
-            self.logger.error("Failed to parse file: %s" % mapname + "/index.xml:")
-            self.logger.error("  ExpatError: %s" % err)
+        except xml.parsers.expat.ExpatError as err:
+            self.logger.error("Failed to parse file: %s/index.xml:" % (mapname))
+            self.logger.error("  ExpatError: %s" % (err))
         xmlConverter = XML2VTK(topElement, basedir=self.basedir)
 
         self.textures = xmlConverter.textures

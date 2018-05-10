@@ -16,7 +16,10 @@ def simpleDict2Dict(simpleDict):
 
 def RESTfulHandler(viewer, inputSocket, inputPacket):
     inputString = inputPacket.strip()
-    logging.debug("Received a command:  %s" % inputString)
+    if isinstance(inputString, bytes):
+        inputString = inputString.decode()
+
+    logging.debug("Received a command:  %s" % (inputString))
     try:
         pieces = inputString.split(None, 2) # maximum of 3 pieces
         verb = pieces[0]
@@ -27,7 +30,7 @@ def RESTfulHandler(viewer, inputSocket, inputPacket):
         if verb == "LOAD":
             if cObjects[0] == "map":
                 returnString = viewer.LoadMap(pieces[2])
-                inputSocket.send(" %s\n" % returnString)
+                inputSocket.send( (" %s\n" % (returnString)).encode())
             elif cObjects[0] == "character":
                 extraArgs = simpleDict2Dict(pieces[2])
                 returnString = viewer.LoadCharacter(extraArgs['jid'], extraArgs)
@@ -35,7 +38,7 @@ def RESTfulHandler(viewer, inputSocket, inputPacket):
                 #udpport = extraArgs['transport']['port']
                 #viewer.UDPRecipients.append( (ipaddr, int(udpport)) )
                 #viewer.authorizedUDPpackets[ (ipaddr, int(udpport)) ] = [ jid ]
-                inputSocket.send(" %s\n" % returnString)
+                inputSocket.send( (" %s\n" % (returnString)).encode())
         elif verb == "REMOVE":
             if cObjects[0] == "maps":
                 mapName = cObjects[1]
@@ -58,20 +61,20 @@ def RESTfulHandler(viewer, inputSocket, inputPacket):
             if cObjects[0] == "osd":
                 viewer.PostOSD(pieces[2])
         elif verb == "GET":
-            print cObjects, len(cObjects)
+            print(cObjects, len(cObjects))
             if cObjects[0] == "info":
                 if len(cObjects) > 1:
                     if cObjects[1] == "transport":
                         viewer.AnnounceTransport()
                 else:
-                    inputSocket.send("Available info is:\n")
-                    inputSocket.send("info/transport\n")
+                    inputSocket.send(b"Available info is:\n")
+                    inputSocket.send(b"info/transport\n")
             elif cObjects[0] == "maps":
                 for mapName in viewer.maps:
-                    inputSocket.send("%s\n" % mapName)
+                    inputSocket.send( ("%s\n" % (mapName)).encode() )
             elif cObjects[0] == "characters":
                 for jid in viewer.characters:
-                    inputSocket.send("%s\n" % jid)
+                    inputSocket.send( ("%s\n" % (jid)).encode() )
         elif verb == "DELETE":
             pass
         elif verb == "MOVE":
@@ -100,6 +103,6 @@ def RESTfulHandler(viewer, inputSocket, inputPacket):
                     logging.error('Failed to SetPosition() in RESTful handler')
         else:
             logging.error('Unrecognized command: %s' % pieces[0])
-    inputSocket.send("> ")
+    inputSocket.send(b"> ")
 
 
