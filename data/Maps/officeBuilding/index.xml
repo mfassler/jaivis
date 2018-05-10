@@ -1,0 +1,16 @@
+
+<!-- a point-cloud in .ply format -->
+
+<VTKpipelines>
+
+<Actor name="point cloud">
+  <PolyDataMapper>
+    <VertexGlyphFilter>
+      <PLYReader SetFileName="tripleCam_dense_manual_cleanup2.ply">
+      </PLYReader>
+    </VertexGlyphFilter>
+  </PolyDataMapper>
+</Actor>
+
+
+</VTKpipelines>

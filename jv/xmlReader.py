@@ -16,11 +16,11 @@ import os
 vtkTypes = {}
 vtkTypes['Mapper']      = ['DataSetMapper', 'PolyDataMapper']
 vtkTypes['Algorithm']   = ['CylinderSource', 'SphereSource', 'CubeSource', 'DiskSource',
-                           'ConeSource', 'UnstructuredGridReader', 'PolyDataReader', 
+                           'ConeSource', 'UnstructuredGridReader', 'PLYReader', 'PolyDataReader', 
                            'TextureMapToPlane', 'TextureMapToSphere', 'ContourFilter',
                            'TransformTextureCoords', 'TransformPolyDataFilter',
                            'TransformFilter', 'ImplicitModeller', 
-                           'Glyph3D', 'GlyphSource2D', 'ImplicitSum', 
+                           'Glyph3D', 'VertexGlyphFilter', 'GlyphSource2D', 'ImplicitSum', 
                            'SampleFunction', 'PolyDataNormals']
 vtkTypes['ImageReader'] = ['BMPReader']
 vtkTypes['LinearTransform'] = ['Transform']
@@ -79,6 +79,7 @@ class XML2VTK:
         self.namesToFunctions['Light'] = self.Light
         self.namesToFunctions['PerlinNoise'] = self.PerlinNoise
         self.namesToFunctions['Plane'] = self.Plane
+        self.namesToFunctions['PLYReader'] = self.PLYReader
         self.namesToFunctions['PolyDataMapper'] = self.PolyDataMapper
         self.namesToFunctions['PolyDataNormals'] = self.PolyDataNormals
         self.namesToFunctions['PolyDataReader'] = self.PolyDataReader
@@ -91,6 +92,7 @@ class XML2VTK:
         self.namesToFunctions['TransformPolyDataFilter'] = self.TransformPolyDataFilter
         self.namesToFunctions['TransformFilter'] = self.TransformFilter
         self.namesToFunctions['UnstructuredGridReader'] = self.UnstructuredGridReader
+        self.namesToFunctions['VertexGlyphFilter'] = self.VertexGlyphFilter
 
         if topElement.tag == "VTKpipelines":
             self.logger.debug('inside a <VTKpipelines> element')
@@ -317,6 +319,27 @@ class XML2VTK:
             self.logger.error('  .. <DataSetMapper> needs an Algorithm-type childElement')
         return mapper
 
+
+    def VertexGlyphFilter(self, currentElement):
+        gFilter = vtk.vtkVertexGlyphFilter()
+        AlgorithmElement = ''
+        for childElement in currentElement.getchildren():
+            if childElement.tag in vtkTypes['Algorithm']:
+                self.logger.debug('VertexGlyphFilter trying to add: %s' % (childElement.tag))
+                AlgorithmElement = childElement
+        if AlgorithmElement != '':
+            dataset = self.namesToFunctions[AlgorithmElement.tag](AlgorithmElement)
+            try:
+                gFilter.SetInputConnection(dataset.GetOutputPort())
+            except Exception as err:
+                self.logger.error("  .. <VertexGlyphFilter> failed to SetInputConnection")
+                self.logger.error(err)
+        else:
+            self.logger.error('  .. <VertexGlyphFilter> needs an Algorithm-type childElement')
+        return gFilter
+
+
+
     def GlyphSource2D(self, currentElement):
         gsource = vtk.vtkGlyphSource2D()
         #if 'SetGlyphType' in currentElement.keys():
@@ -332,6 +355,7 @@ class XML2VTK:
             except:
                 self.logger.error('  .. <GlyphSource2D> failed to SetScale')
         return gsource
+
 
     def PolyDataMapper(self, currentElement):
         mapper = vtk.vtkPolyDataMapper()
@@ -585,6 +609,14 @@ class XML2VTK:
             reader.SetFileName(os.path.join(self.basedir, currentElement.get('SetFileName')))
         except:
             self.logger.error('  .. <PolyDataReader> failed to SetFileName')
+        return reader
+
+    def PLYReader(self, currentElement):
+        reader = vtk.vtkPLYReader()
+        try:
+            reader.SetFileName(os.path.join(self.basedir, currentElement.get('SetFileName')))
+        except:
+            self.logger.error('  .. <PLYReader> failed to SetFileName')
         return reader
 
     def ImplicitModeller(self, currentElement):
