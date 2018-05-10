@@ -51,10 +51,10 @@ try:
 except:
     pass
 
-logging.basicConfig(filename=LOG_FILENAME,level=logging.DEBUG,)
+logging.basicConfig(filename=LOG_FILENAME, level=logging.DEBUG)
 
 logging.debug("\n **** Starting Jaivis ****")
-logging.debug("Debug level set to: %d" % options.debugLevel)
+logging.debug("Debug level set to: %d" % (options.debugLevel))
 
 print("viewer_type is: ", viewerType)
 
@@ -66,7 +66,7 @@ if not viewerType in viewers.AllViewers:
         print(" ", i)
     sys.exit(1)
 
-print("\nLogfile:  plaintext: %s" % LOG_FILENAME)
+print("\nLogfile:  plaintext: %s" % (LOG_FILENAME))
 
 # Create the Jaivis (ie, VTK) viewer:
 v = viewers.AllViewers[viewerType]()

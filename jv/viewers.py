@@ -106,7 +106,7 @@ class VirtualWorldForPeople:
         try:
             self.jvIOSocket.bind( ("localhost", 49005) )
         except socket.error as err:
-            logging.critical("Failed to bind IO socket: %s" % err)
+            logging.critical("Failed to bind IO socket: %s" % (err))
             sys.exit(1)
  
         self.jvIOSocketLocalAddr = self.jvIOSocket.getsockname()
@@ -123,11 +123,11 @@ class VirtualWorldForPeople:
         try:
             self.jvMCSocket.bind(jvCommandSocketFileName)
         except socket.error as err:
-            logging.critical("Failed to bind MC socket: %s" % err)
+            logging.critical("Failed to bind MC socket: %s" % (err))
             sys.exit(1)
         self.jvMCSocket.listen(1)
         self.MCsocketList = [self.jvMCSocket]
-        print("MC_socket:     UNIX: %s" % jvCommandSocketFileName)
+        print("MC_socket:     UNIX: %s" % (jvCommandSocketFileName))
  
 
         ###  Create the OSDs (On-Screen Displays)  ("status" and "primary")
@@ -234,7 +234,7 @@ class VirtualWorldForPeople:
                 try:
                     self.jvIOSocket.send(packet)
                 except socket.error as err:
-                    logging.error("Failed to send UDP packet: %s" % err)
+                    logging.error("Failed to send UDP packet: %s" % (err))
 
     def CheckForIO_UDPinput(self):
         try:
@@ -287,13 +287,13 @@ class VirtualWorldForPeople:
             else:
                 try:
                     inputPacket = input.recv(1024)
-                except:
-                    logging.error('Error while attempting to receive data from MC socket')
+                except Exception as err:
+                    logging.error('Error while attempting to receive data from MC socket: %s' % (err))
                 if inputPacket:
                     try:
                         restful.RESTfulHandler(self, input, inputPacket)
-                    except:
-                        logging.error('Failed to execute self.RESTful()')
+                    except Exception as err:
+                        logging.error('Failed to execute self.RESTful(): %s' % (err))
                 else:
                     self.MCsocketList.remove(input)
                     logging.info('An MC socket has been disconnected.')
