@@ -256,9 +256,46 @@ class MechAngel:
             self.assembly.AddPart(self.assemblies[i])
 
 
+class CompassRosie:
+    ''' A compass rose that can be easily moved and maniputed.  For testing.
+    '''
+    def __init__ (self, jid):
+        self.jid = jid
+        self.posTimeStamp = time.time()
+        self.velocity = numpy.array([0.0, 0.0, 0.0])
+        self.axisOfRotation = "z"
+        self.omega = 0.0
+        self.microAnimation = 'nothing'
+        self.basedir = jvDataDir + '/Avatars/CompassRosie'
+
+        # Load the stuff:
+        filename = jvDataDir + 'Avatars/CompassRosie/index.xml'
+        fd = open(filename, 'r')
+        XMLstring = fd.read()
+        fd.close()
+        logging.debug("CompassRosie:  Attempting to transform XML string")
+        try:
+            topElement = ET.fromstring(XMLstring)
+        except:
+            logging.error("CompassRosie:  Failed to transform XML string")
+        xmlConverter = XML2VTK(topElement, basedir=self.basedir)
+
+        self.actors = xmlConverter.actors
+        self.assemblies = xmlConverter.assemblies
+
+        # Bind everything into a single object for the viewer:
+        self.assembly = vtk.vtkAssembly()
+        for i in self.actors:
+            self.actors[i].SetPickable(1)
+            self.assembly.AddPart(self.actors[i])
+        for i in self.assemblies:
+            self.assembly.AddPart(self.assemblies[i])
+
+
 
 AllClasses = {}
 AllClasses["Human"] = Human
 AllClasses["MechAngel"] = MechAngel
+AllClasses["CompassRosie"] = CompassRosie
 
 
