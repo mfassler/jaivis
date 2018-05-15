@@ -3,7 +3,7 @@
 
 <VTKpipelines>
 
-<Actor name="point cloud">
+<Actor name="point cloud" SetOrientation="-5.0, 90.0, 25.0">
   <PolyDataMapper>
     <VertexGlyphFilter>
       <PLYReader SetFileName="tripleCam_dense_manual_cleanup2.ply">
